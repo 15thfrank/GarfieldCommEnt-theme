@@ -1,0 +1,88 @@
+{% case block.settings.live_search_content_types %}
+  {% when 'page,product' %}
+    {% assign content_title_key = 'pages_title' %}
+  {% when 'article,product' %}
+    {% assign content_title_key = 'posts_title' %}
+  {% else %}
+    {% assign content_title_key = 'pages_and_posts_title' %}
+{% endcase %}
+
+<script
+  type="application/json"
+  data-section-type="dynamic-search"
+  data-section-id="{{ block.id }}"
+  data-section-data>
+  {
+    "settings": {
+      "live_search": {
+        "enable": {{ block.settings.enable_live_search | json }},
+        "content_types": {{ block.settings.live_search_content_types | json }},
+        "money_format": {{ shop.money_format | strip_html | json }},
+        "context": {
+          "view_all_results": {{ 'search.general.view_all_results' | t | json }},
+          "view_all_products": {{ 'search.general.view_all_products' | t | json }},
+          "content_results": {
+            "title": {{ 'search.general.' | append: content_title_key | t | json }},
+            "no_results": {{ 'search.general.pages_and_posts_no_results' | t | json }}
+          },
+          "no_results_products": {
+            "title": {{ 'search.general.no_results_products_title' | t: terms: '*terms*' | json }},
+            "message": {{ 'search.general.no_results_products_message' | t | json }}
+          }
+        }
+      }
+    }
+  }
+</script>
+
+{% assign show_overlay = block.settings.show-overlay %}
+{% assign overlay_color = block.settings.background %}
+{% assign overlay_opacity = block.settings.opacity | times: 0.01 %}
+
+{% assign overlay_alpha = overlay_color | color_extract: 'alpha' | round %}
+{% if overlay_alpha == 0 or overlay_opacity == 0 %}
+  {% assign show_overlay = false %}
+{% endif %}
+
+<section class="search-section custompage-sectionpad" style="background-color: {{ block.settings.background_color }};">
+  <div class="search-section-background search-section-position-{{ block.settings.position }}"
+    {% if block.settings.image %}
+      {% include 'rimg', img: block.settings.image, size: '1350x1350', lazy: settings.lazy_load, background: true %}
+    {% endif %}
+  >
+    {% if block.settings.image %}
+      {% include 'rimg', img: block.settings.image, size: '1350x1350', lazy: settings.lazy_load, canvas: settings.lazy_load %}
+    {% endif %}
+  </div>
+
+  {% if show_overlay %}
+    <div class="search-section-overlay" style="background-color: {{ overlay_color | color_modify: 'alpha', overlay_opacity }}"></div>
+  {% endif %}
+
+  <div class="search-section-content" {% if show_overlay %} style="color: {{ block.settings.color }}" {% endif %}>
+    <div class="search-section-form">
+      {% if block.settings.title != blank or block.settings.subheading != blank %}
+        <div class="home-section--title-container">
+          {% if block.settings.title != blank %}
+            <h2 class="home-section--title" style="color: {{ block.settings.heading_color }}">
+              {{ block.settings.title | escape }}
+            </h2>
+          {% endif %}
+
+          {% if block.settings.subheading != blank %}
+            <div class="home-section--subheading" style=" color: {{ block.settings.subheading_color }};">
+              {{ block.settings.subheading }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    {%
+      include 'live-search-form',
+      search_quick_links: linklists[block.settings.search_quick_links],
+      enable_live_search: block.settings.enable_live_search,
+      content_types: block.settings.live_search_content_types,
+      placeholder: block.settings.placeholder
+    %}
+  </div>
+</section>

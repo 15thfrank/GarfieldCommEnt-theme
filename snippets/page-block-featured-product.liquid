@@ -1,0 +1,46 @@
+{% assign product = all_products[block.settings.product] %}
+{% assign onboarding = false %}
+
+{% assign hover_zoom = block.settings.gallery_hover_zoom %}
+
+{% if product.empty? %}
+  {% assign onboarding = true %}
+{% endif %}
+
+{% include 'api' with 'product:json', product: product %}
+
+<script
+  type="application/json"
+  data-section-type="dynamic-featured-product"
+  data-section-id="{{ block.id }}"
+  data-section-data
+>
+  {
+    "settings": {
+      "cart_redirection": {{ block.settings.product_cart_redirect | json }},
+      "money_format": {{ shop.money_format | strip_html | json }},
+      "thumbnail_position": {{ block.settings.gallery_thumbnail_position | json }},
+      "gallery_video_autoplay": {{ block.settings.gallery_video_autoplay | json }},
+      "gallery_video_looping": {{ block.settings.gallery_video_looping | json }},
+      "hover_zoom": {{ hover_zoom | json }},
+      "click_to_zoom": "disabled",
+      "lazy_load": {{ settings.lazy_load | json }},
+      "enableHistory": false,
+      "section_id": {{ block.id | json }},
+      "enableSwatches": {{ settings.swatches_enable | json }}
+    },
+    "context": {
+      "product_available": {{ 'product.buttons.add_to_cart' | t | json }},
+      "product_unavailable": {{ 'product.buttons.sold_out' | t | json }}
+    },
+    "product": {% unless onboarding %}{{ json }}{% else %}false{% endunless %},
+    "models": {{ product.media | where: 'media_type', 'model' | json }}
+  }
+</script>
+
+<section class="custompage-section featured-product--container custom-product--{{ product.handle }} {% for c in product.collections %}custom-collection--{{ c.handle }} {% endfor %}" data-product-wrapper style="background-color: {{ block.settings.background_color }}">
+  <div class="featured-product--inner">
+    {% include 'product', show_description: block.settings.show_description, onboarding: onboarding, featured: true, gallery_aspect_ratio: block.settings.gallery_aspect_ratio,
+      gallery_thumbnail_position: block.settings.gallery_thumbnail_position, gallery_image_crop: block.settings.gallery_image_crop, gallery_click_to_zoom: 'disabled', gallery_hover_zoom: hover_zoom, %}
+  </div>
+</section>

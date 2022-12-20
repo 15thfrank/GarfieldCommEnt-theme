@@ -1,0 +1,378 @@
+{% assign blocksize = 0 %}
+{% if block.settings.c1_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c2_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c3_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c4_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+
+{% style %}
+
+.csftcolls .promo-block-mosaic {
+    {% if block.settings.color != blank %}
+      color: {{ block.settings.color }};
+    {% endif %}
+  }
+
+  {% unless block.settings.image %}
+    .csftcolls .promo-block-mosaic {
+      {%- capture bg_image -%}
+        {%-
+          include 'placeholder_svg_uri'
+          placeholder: 'image'
+        -%}
+      {%- endcapture -%}
+      background-image: url('{{ bg_image | strip_newlines }}');
+    }
+
+    {% comment %} This is used to force the aspect ratio and size of the container
+    in the absence of an actual image {% endcomment %}
+    .csftcolls .promo-block-mosaic::before {
+      display: block;
+      width: 100%;
+      padding-bottom: 75%;
+      content: "";
+    }
+  {% endunless %}
+
+  {% if block.settings.overlay_style != 'none' and block.settings.overlay_color != blank %}
+      {% assign opacity = block.settings.opacity | times: 0.01 %}
+
+      {% if block.settings.text_alignment contains 'top' %}
+        {% assign text_position = 'top' %}
+      {% elsif block.settings.text_alignment contains 'bottom' %}
+        {% assign text_position = 'bottom' %}
+      {% else %}
+        {% assign text_position = block.settings.text_alignment | remove: 'center-' %}
+      {% endif %}
+
+      .csftcolls .promo-block-mosaic--content {
+        {% if block.settings.overlay_style == 'solid' %}
+          background-color: {{ block.settings.overlay_color | color_modify: 'alpha', opacity }};
+        {% else %}
+          background: {%
+            include 'gradient',
+            color: block.settings.overlay_color,
+            opacity: opacity,
+            text_position: text_position,
+          %};
+        {% endif %}
+      }
+    {% endif %}
+{% endstyle %}
+
+<section class="featured-collections--container custompage-sectionpad csftcolls" style="background-color: {{ block.settings.background_color }};">
+  {% if block.settings.title != blank or block.settings.subheading != blank %}
+    <div class="home-section--title-container" >
+    {% if block.settings.title != blank %}
+      <h2 class="home-section--title" style="color: {{ block.settings.heading_color }};">
+        {{ block.settings.title | escape }}
+      </h2>
+    {% endif %}
+    {% if block.settings.subheading != blank %}
+      <div class="home-section--subheading" style="color: {{ block.settings.subheading_color }};">
+        {{ block.settings.subheading }}
+      </div>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="home-section--content featured-collections--content">
+      <!--Promo block starts here-->
+      {% assign has_link = false %}
+      {% if block.settings.block_link != blank %}
+        {% assign has_link = true %}
+      {% endif %}
+      {% assign block_title = block.settings.title %}
+      {% assign block_text = block.settings.text %}
+      
+      {% assign button_style = block.settings.button_style | split: "_" %}
+      
+      {%- capture classes -%}
+        promo-block-mosaic
+        {% if forloop.index %}promo-block-mosaic--index-{{ forloop.index }}{% endif %}
+        promo-block-mosaic--{{ block.id }}
+        {% if maintain_aspect_ratio %}promo-mosaic--maintain-aspect-ratio{% endif %}
+        {{ additional_classes | strip_newlines }}
+      {%- endcapture -%}
+      
+      
+      <{% if block_title != blank and block_text != blank %}article{% else %}div{% endif %}
+        class="{{ classes | replace: '  ', ' ' | strip_newlines }}"
+        {{ block.shopify_attributes }}
+        {% if block.settings.image %}
+          {% include 'rimg' img: block.settings.image, background: true, lazy: settings.lazy_load, size: '1350x1350' %}
+        {% endif %}
+      >
+        {% if block.settings.image %}
+          {% include 'rimg' img: block.settings.image, lazy: settings.lazy_load, canvas: settings.lazy_load, class: 'promo-block-mosaic--background', size: '1350x1350' %}
+        {% endif %}
+      
+        {%- capture wrapper_classes -%}
+          promo-block-mosaic--content
+          promo-block-mosaic--content-align-{{ block.settings.text_alignment }}
+          {% unless maintain_aspect_ratio %}promo-mosaic--maintain-aspect-ratio{% endunless %}
+          {% if compress_blocks == false %}promo-block-mosaic--expanded{% endif %}
+          {% unless has_link %}promo-block-mosaic--unlinked{% endunless %}
+        {%- endcapture -%}
+      
+        {% if has_link %}
+          <a class="{{ wrapper_classes | replace: '  ', ' ' | strip_newlines }}" href="{{ block.settings.block_link }}" data-promo-block-mosaic-content>
+        {% else %}
+          <div class="{{ wrapper_classes | replace: '  ', ' ' | strip_newlines }}" data-promo-block-mosaic-content>
+        {% endif %}
+      
+        <div class="promo-block-mosaic--content-wrapper">
+          {% if block_title != blank %}
+            <h2 class="promo-block-mosaic--header">
+              {{ block_title | escape }}
+            </h2>
+          {% endif %}
+      
+          {% if block_text != blank %}
+            <p class="promo-block-mosaic--text">
+              {{ block_text | escape | truncate: 120 }}
+            </p>
+          {% endif %}
+      
+          {% if block.settings.button_text != blank and block.settings.block_link != blank %}
+            {%- capture button_classes -%}
+              button-{{ button_style.first }}
+              promo-block-mosaic--button
+              {% if button_style contains 'icon' %}
+                has-icon
+              {% endif %}
+            {%- endcapture -%}
+            <span class="{{- button_classes -}}">
+              <span class="button-text">
+                {{- block.settings.button_text | escape -}}
+              </span>
+              {% if button_style contains 'icon' %}
+                <span class="button-icon">
+                  {% include 'icon-library', id: 'icon-chevron-signpost' %}
+                </span>
+              {% endif %}
+            </span>
+          {% endif %}
+        </div>
+      
+        {% if compress_blocks == true %}
+          <span class="promo-block-mosaic--expander">
+            {% include 'icon-library', id: 'icon-chevron-down' %}
+          </span>
+        {% endif %}
+      
+        {% if has_link %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </{% if block_title != blank and block_text != blank %}article{% else %}div{% endif %}>
+      
+
+    <!--Promo block ends here-->
+
+
+    <!--Collection blocks start here-->
+    <div class="featured-collections--grid-items-container {% if blocksize < 3 %} featured-collections--lte-2-grid-items {% endif %} ">
+      <!--First collection starts here-->
+      {% if block.settings.c1_show %}
+        {% assign collection = collections[block.settings.c1_collection] %}
+
+        {% assign grid_item_image = blank %}
+        {% if block.settings.c1_image %}
+          {% assign grid_item_image = block.settings.c1_image %}
+        {% elsif collection.image %}
+          {% assign grid_item_image = collection.image %}
+        {% elsif collection.products.first.featured_media.preview_image %}
+          {% assign grid_item_image = collection.products.first.featured_media.preview_image %}
+        {% endif %}
+
+        <div {{ block.shopify_attributes }} class="featured-collections--grid-item">
+          <a class="featured-collections--grid-item-image-wrapper {% if grid_item_image == blank %}featured-collections--grid-item-image-placeholder{% endif %}" href="{{collection.url}}">
+            {% if grid_item_image == blank %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% else %}
+              {% assign alt_text = grid_item_image.alt %}
+              {% if alt_text == blank %}
+                {% assign alt_text = 'onboarding.featured_collection.title' | t %}
+              {% endif %}
+              {% include 'rimg', img: grid_item_image, alt: alt_text, class: 'featured-collections--grid-item-image', size: '640x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% endif %}
+          </a>
+          <h2 class="featured-collections-grid-item-title align-{{ block.settings.collection_text_alignment }} style-{{ block.settings.collection_label_style }}">
+            <a href="{{collection.url}}">
+              {%- if block.settings.c1_title != blank  or block.settings.c1_title_mobile != blank -%}
+                {%- assign collection_title = block.settings.c1_title | default: collection.title -%}
+                {%- assign mobile_collection_title = block.settings.c1_title_mobile | default: block.settings.c1_title -%}
+                <span class="featured-collections-item-title-desktop">
+                    {{ collection_title }}
+                </span>
+                <span class="featured-collections-item-title-mobile">
+                    {{ mobile_collection_title }}
+                </span>
+              {% elsif collection.title != blank %}
+                {{ collection.title }}
+              {% else %}
+                {{ 'onboarding.featured_collection.title' | t }}
+              {% endif %}
+            </a>
+          </h2>
+        </div>
+      {% endif %}
+      <!-- First collection ends here-->
+
+      <!--Second collection starts here-->
+      {% if block.settings.c2_show %}
+        {% assign collection = collections[block.settings.c2_collection] %}
+
+        {% assign grid_item_image = blank %}
+        {% if block.settings.c2_image %}
+          {% assign grid_item_image = block.settings.c2_image %}
+        {% elsif collection.image %}
+          {% assign grid_item_image = collection.image %}
+        {% elsif collection.products.first.featured_media.preview_image %}
+          {% assign grid_item_image = collection.products.first.featured_media.preview_image %}
+        {% endif %}
+
+        <div {{ block.shopify_attributes }} class="featured-collections--grid-item">
+          <a class="featured-collections--grid-item-image-wrapper {% if grid_item_image == blank %}featured-collections--grid-item-image-placeholder{% endif %}" href="{{collection.url}}">
+            {% if grid_item_image == blank %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% else %}
+              {% assign alt_text = grid_item_image.alt %}
+              {% if alt_text == blank %}
+                {% assign alt_text = 'onboarding.featured_collection.title' | t %}
+              {% endif %}
+              {% include 'rimg', img: grid_item_image, alt: alt_text, class: 'featured-collections--grid-item-image', size: '640x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% endif %}
+          </a>
+          <h2 class="featured-collections-grid-item-title align-{{ block.settings.collection_text_alignment }} style-{{ block.settings.collection_label_style }}">
+            <a href="{{collection.url}}">
+              {%- if block.settings.c2_title != blank  or block.settings.c2_title_mobile != blank -%}
+                {%- assign collection_title = block.settings.c2_title | default: collection.title -%}
+                {%- assign mobile_collection_title = block.settings.c2_title_mobile | default: block.settings.c2_title -%}
+                <span class="featured-collections-item-title-desktop">
+                    {{ collection_title }}
+                </span>
+                <span class="featured-collections-item-title-mobile">
+                    {{ mobile_collection_title }}
+                </span>
+              {% elsif collection.title != blank %}
+                {{ collection.title }}
+              {% else %}
+                {{ 'onboarding.featured_collection.title' | t }}
+              {% endif %}
+            </a>
+          </h2>
+        </div>
+      {% endif %}
+      <!-- Second collection ends here-->
+
+      <!--Third collection starts here-->
+      {% if block.settings.c3_show %}
+        {% assign collection = collections[block.settings.c3_collection] %}
+
+        {% assign grid_item_image = blank %}
+        {% if block.settings.c3_image %}
+          {% assign grid_item_image = block.settings.c3_image %}
+        {% elsif collection.image %}
+          {% assign grid_item_image = collection.image %}
+        {% elsif collection.products.first.featured_media.preview_image %}
+          {% assign grid_item_image = collection.products.first.featured_media.preview_image %}
+        {% endif %}
+
+        <div {{ block.shopify_attributes }} class="featured-collections--grid-item">
+          <a class="featured-collections--grid-item-image-wrapper {% if grid_item_image == blank %}featured-collections--grid-item-image-placeholder{% endif %}" href="{{collection.url}}">
+            {% if grid_item_image == blank %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% else %}
+              {% assign alt_text = grid_item_image.alt %}
+              {% if alt_text == blank %}
+                {% assign alt_text = 'onboarding.featured_collection.title' | t %}
+              {% endif %}
+              {% include 'rimg', img: grid_item_image, alt: alt_text, class: 'featured-collections--grid-item-image', size: '640x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% endif %}
+          </a>
+          <h2 class="featured-collections-grid-item-title align-{{ block.settings.collection_text_alignment }} style-{{ block.settings.collection_label_style }}">
+            <a href="{{collection.url}}">
+              {%- if block.settings.c3_title != blank  or block.settings.c3_title_mobile != blank -%}
+                {%- assign collection_title = block.settings.c3_title | default: collection.title -%}
+                {%- assign mobile_collection_title = block.settings.c3_title_mobile | default: block.settings.c3_title -%}
+                <span class="featured-collections-item-title-desktop">
+                    {{ collection_title }}
+                </span>
+                <span class="featured-collections-item-title-mobile">
+                    {{ mobile_collection_title }}
+                </span>
+              {% elsif collection.title != blank %}
+                {{ collection.title }}
+              {% else %}
+                {{ 'onboarding.featured_collection.title' | t }}
+              {% endif %}
+            </a>
+          </h2>
+        </div>
+      {% endif %}
+      <!-- Third collection ends here-->
+
+      <!--Fourth collection starts here-->
+      {% if block.settings.c4_show %}
+        {% assign collection = collections[block.settings.c4_collection] %}
+
+        {% assign grid_item_image = blank %}
+        {% if block.settings.c4_image %}
+          {% assign grid_item_image = block.settings.c4_image %}
+        {% elsif collection.image %}
+          {% assign grid_item_image = collection.image %}
+        {% elsif collection.products.first.featured_media.preview_image %}
+          {% assign grid_item_image = collection.products.first.featured_media.preview_image %}
+        {% endif %}
+
+        <div {{ block.shopify_attributes }} class="featured-collections--grid-item">
+          <a class="featured-collections--grid-item-image-wrapper {% if grid_item_image == blank %}featured-collections--grid-item-image-placeholder{% endif %}" href="{{collection.url}}">
+            {% if grid_item_image == blank %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% else %}
+              {% assign alt_text = grid_item_image.alt %}
+              {% if alt_text == blank %}
+                {% assign alt_text = 'onboarding.featured_collection.title' | t %}
+              {% endif %}
+              {% include 'rimg', img: grid_item_image, alt: alt_text, class: 'featured-collections--grid-item-image', size: '640x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% endif %}
+          </a>
+          <h2 class="featured-collections-grid-item-title align-{{ block.settings.collection_text_alignment }} style-{{ block.settings.collection_label_style }}">
+            <a href="{{collection.url}}">
+              {%- if block.settings.c4_title != blank  or block.settings.c4_title_mobile != blank -%}
+                {%- assign collection_title = block.settings.c4_title | default: collection.title -%}
+                {%- assign mobile_collection_title = block.settings.c4_title_mobile | default: block.settings.c4_title -%}
+                <span class="featured-collections-item-title-desktop">
+                    {{ collection_title }}
+                </span>
+                <span class="featured-collections-item-title-mobile">
+                    {{ mobile_collection_title }}
+                </span>
+              {% elsif collection.title != blank %}
+                {{ collection.title }}
+              {% else %}
+                {{ 'onboarding.featured_collection.title' | t }}
+              {% endif %}
+            </a>
+          </h2>
+        </div>
+      {% endif %}
+      <!-- Fourth collection ends here-->
+    </div>
+    <!--Collection blocks end here-->
+  </div>
+</section>

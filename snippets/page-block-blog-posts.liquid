@@ -1,0 +1,66 @@
+{% assign blog = blogs[block.settings.blog] %}
+{% assign blog_url = '#' %}
+{% assign onboarding = true %}
+
+{% if block.settings.blog != 'none' and blog.articles_count > 0 %}
+  {% assign onboarding = false %}
+  {% assign blog_url = blog.url %}
+{% endif %}
+
+{% assign button_style = block.settings.button_style | split:"_" %}
+
+{% assign article_count = 3 %}
+{% if onboarding == false and blog.articles_count < article_count %}
+  {% assign article_count = blog.articles_count %}
+{% endif %}
+
+{%- capture 'button_class' -%}
+  {{ button_style.first | prepend: 'button-' }}
+{%- endcapture -%}
+
+<script
+  type="application/json"
+  data-section-id="{{ block.id }}"
+  data-section-type="dynamic-blog-posts">
+</script>
+
+<section class="custompage-sectionpad blogposts--section blogposts--container blogposts--count-{{ article_count }}" style="background-color: {{ block.settings.background_color }};">
+  {% if block.settings.title != blank or block.settings.subheading != blank %}
+    <div class="home-section--title-container" >
+    {% if block.settings.title != blank %}
+      <h2 class="home-section--title" style="color: {{ block.settings.heading_color }};">
+        {{ block.settings.title | escape }}
+      </h2>
+    {% endif %}
+    {% if block.settings.subheading != blank %}
+      <div class="home-section--subheading" style="color: {{ block.settings.subheading_color }}">
+        {{ block.settings.subheading }}
+        {% if onboarding %}Onboarding {% endif %}
+      </div>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  <ul class="home-section--content blogposts--inner" data-blog-posts>
+    {% if onboarding %}
+      {% for i in (1..article_count) %}
+        {% include 'sub-page-block-article-excerpt', onboarding: true %}
+      {% endfor %}
+    {% else %}
+      {% for article in blog.articles limit: article_count %}
+        {% include 'sub-page-block-article-excerpt', article: article %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+
+  <div class="blogposts--footer">
+    <a class="blogposts--footer-button button-{{ block.settings.view_all_button_style | remove: '_with_icon' }}" href="{{ blog_url }}">
+      {{ block.settings.view_all_text }}
+      {% if block.settings.view_all_button_style contains 'with_icon' %}
+        <span class="blogposts--footer-icon">
+          {% include 'icon-library', id: 'icon-chevron-signpost' %}
+        </span>
+      {% endif %}
+    </a>
+  </div>
+</section>

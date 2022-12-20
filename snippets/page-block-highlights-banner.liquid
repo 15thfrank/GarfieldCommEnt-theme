@@ -1,0 +1,164 @@
+<style>
+    .customhighlightbanner .highlights-banners-heading {color: {{ block.settings.heading_color }};}
+    .customhighlightbanner .highlights-banners-block::after {background: {{ block.settings.dividers_color }};}
+    .customhighlightbanner .highlights-banners-icon {color: {{ block.settings.icon_color }};}
+
+    /*each .highlights-banners-block style="color: {{ block.settings.color }};"*/
+</style>
+
+<div class="highlights-banners-container customhighlightbanner" style="background-color: {{ block.settings.background_color }}">
+    <div class="highlights-banners highlight-banners-count-{{ block.blocks.size }} highlight-banners-align-{{ block.settings.text_alignment }} custompage-sectionpad" style="background-color: {{ block.settings.inner_background_color }}">
+        <!--First highlight starts here-->
+        {% if block.settings.showh1 %}
+            <div class="highlights-banners-block"  {{ block.shopify_attributes }}>
+            {% capture block_icon %}
+                {% if block.settings.h1_icon != 'none' or block.settings.h1_image != blank %}
+                <div class="highlights-banners-icon">
+                    {% if block.settings.h1_image != blank %}
+                    {% include 'rimg', class: 'highlights-banners-custom-icon', img: block.settings.h1_image, size: 'x46'%}
+                    {% else %}
+                    {% include 'icon-library', id: block.settings.h1_icon %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endcapture %}
+            {% unless block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endunless %}
+            <div class="highlights-banners-text">
+                {% if block.settings.h1_title != blank %}
+                <span class="highlights-banners-heading">
+                    {{ block.settings.h1_title | escape }}
+                </span>
+                {% endif %}
+
+                {% if block.settings.h1_text != blank %}
+                {{ block.settings.h1_text }}
+                {% endif %}
+            </div>
+            {% if block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endif %}
+            {% if block.settings.h1_link != blank %}
+                <a class="highlights-banners-block-link" href="{{ block.settings.h1_link }}" {{ block.shopify_attributes }}></a>
+            {% endif %}
+            </div>
+        {% endif %}
+        <!--First highlight ends here-->
+
+        <!--Second highlight starts here-->
+        {% if block.settings.showh2 %}
+            <div class="highlights-banners-block"  {{ block.shopify_attributes }}>
+            {% capture block_icon %}
+                {% if block.settings.h2_icon != 'none' or block.settings.h2_image != blank %}
+                <div class="highlights-banners-icon">
+                    {% if block.settings.h2_image != blank %}
+                    {% include 'rimg', class: 'highlights-banners-custom-icon', img: block.settings.h2_image, size: 'x46'%}
+                    {% else %}
+                    {% include 'icon-library', id: block.settings.h2_icon %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endcapture %}
+            {% unless block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endunless %}
+            <div class="highlights-banners-text">
+                {% if block.settings.h2_title != blank %}
+                <span class="highlights-banners-heading">
+                    {{ block.settings.h2_title | escape }}
+                </span>
+                {% endif %}
+
+                {% if block.settings.h2_text != blank %}
+                {{ block.settings.h2_text }}
+                {% endif %}
+            </div>
+            {% if block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endif %}
+            {% if block.settings.h2_link != blank %}
+                <a class="highlights-banners-block-link" href="{{ block.settings.h2_link }}" {{ block.shopify_attributes }}></a>
+            {% endif %}
+            </div>
+        {% endif %}
+        <!--Second highlight ends here-->
+
+        <!--Third highlight starts here-->
+        {% if block.settings.showh3 %}
+            <div class="highlights-banners-block"  {{ block.shopify_attributes }}>
+            {% capture block_icon %}
+                {% if block.settings.h3_icon != 'none' or block.settings.h3_image != blank %}
+                <div class="highlights-banners-icon">
+                    {% if block.settings.h3_image != blank %}
+                    {% include 'rimg', class: 'highlights-banners-custom-icon', img: block.settings.h3_image, size: 'x46'%}
+                    {% else %}
+                    {% include 'icon-library', id: block.settings.h3_icon %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endcapture %}
+            {% unless block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endunless %}
+            <div class="highlights-banners-text">
+                {% if block.settings.h3_title != blank %}
+                <span class="highlights-banners-heading">
+                    {{ block.settings.h3_title | escape }}
+                </span>
+                {% endif %}
+
+                {% if block.settings.h3_text != blank %}
+                {{ block.settings.h3_text }}
+                {% endif %}
+            </div>
+            {% if block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endif %}
+            {% if block.settings.h3_link != blank %}
+                <a class="highlights-banners-block-link" href="{{ block.settings.h3_link }}" {{ block.shopify_attributes }}></a>
+            {% endif %}
+            </div>
+        {% endif %}
+        <!--Third highlight ends here-->
+
+        <!--Fourth highlight starts here-->
+        {% if block.settings.showh4 %}
+            <div class="highlights-banners-block"  {{ block.shopify_attributes }}>
+            {% capture block_icon %}
+                {% if block.settings.h4_icon != 'none' or block.settings.h4_image != blank %}
+                <div class="highlights-banners-icon">
+                    {% if block.settings.h4_image != blank %}
+                    {% include 'rimg', class: 'highlights-banners-custom-icon', img: block.settings.h4_image, size: 'x46'%}
+                    {% else %}
+                    {% include 'icon-library', id: block.settings.h4_icon %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endcapture %}
+            {% unless block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endunless %}
+            <div class="highlights-banners-text">
+                {% if block.settings.h4_title != blank %}
+                <span class="highlights-banners-heading">
+                    {{ block.settings.h4_title | escape }}
+                </span>
+                {% endif %}
+
+                {% if block.settings.h4_text != blank %}
+                {{ block.settings.h4_text }}
+                {% endif %}
+            </div>
+            {% if block.settings.text_alignment == 'right' %}
+                {{ block_icon }}
+            {% endif %}
+            {% if block.settings.h4_link != blank %}
+                <a class="highlights-banners-block-link" href="{{ block.settings.h4_link }}" {{ block.shopify_attributes }}></a>
+            {% endif %}
+            </div>
+        {% endif %}
+        <!--Fourth highlight ends here-->
+
+    </div>
+</div>

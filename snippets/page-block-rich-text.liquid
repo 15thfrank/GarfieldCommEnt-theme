@@ -1,0 +1,21 @@
+<script
+  type="application/json"
+  data-section-id="{{ block.id }}"
+  data-section-type="dynamic-rich-text"
+></script>
+
+<section class="custompage-sectionpad rich-text--container rich-text-{{ block.settings.width }}" style="background-color: {{ block.settings.background_color }}">
+    <div class="rich-text-block rich-text-alignment-{{ block.settings.text_alignment }}" {{ block.shopify_attributes }}>
+        {% if block.settings.title != blank %}
+          <h2 class="rich-text-heading rich-text-heading-{{ block.settings.heading_size }}">
+            {{ block.settings.title | escape }}
+          </h2>
+        {% endif %}
+
+        {% if block.settings.text != blank %}
+          <div class="rich-text-content rte" data-rte>
+            {{ block.settings.text }}
+          </div>
+        {% endif %}
+    </div>
+</section>

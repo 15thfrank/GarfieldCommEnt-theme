@@ -1,0 +1,4779 @@
+{% include 'page-template-blocks' %}
+
+{% schema %}
+  {
+    "name": "Product page sections",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "page_title_enable",
+        "label": "Show page title?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "page_content_enable",
+        "label": "Show page content?",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "blog-posts",
+        "name": "Blog posts",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Blog posts"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "blog",
+            "id": "blog",
+            "label": "Blog"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_date",
+            "label": "Show date published",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "show_author",
+            "label": "Show post author",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "show_excerpt",
+            "label": "Show post excerpt",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "'More posts' button"
+          },
+          {
+            "type":      "text",
+            "id":        "view_all_text",
+            "label":     "Label",
+            "default":   "See more posts"
+          },
+          {
+            "type":      "select",
+            "id":        "view_all_button_style",
+            "label":     "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_with_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_with_icon",
+                "label": "Secondary with icon"
+              }
+            ],
+            "default": "primary"
+          }
+        ]
+      },
+      {
+        "type": "newsletter",
+        "name": "Newsletter",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Newsletter"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "<p>Invite customers to join your mailing list.</p>"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "desktop_alignment",
+            "label": "Desktop image alignment",
+            "options": [
+              { "label": "Left", "value": "left" },
+              { "label": "Right", "value": "right" }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "select",
+            "id": "mobile_alignment",
+            "label": "Mobile image alignment",
+            "options": [
+              { "label": "Top", "value": "top" },
+              { "label": "Bottom", "value": "bottom" }
+            ],
+            "default": "top"
+          }
+        ]
+      },
+      {
+        "type": "map",
+        "name": "Map",
+        "settings": [
+          {
+            "type": "select",
+            "id": "section_height",
+            "label": "Section height",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "medium",
+                "label": "Medium"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              }
+            ],
+            "default": "medium"
+          },
+          {
+            "type": "color",
+            "id": "section_background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Location"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "Address and hours",
+            "default": "<p>1221 Broad St<br>Victoria, BC</p>"
+          },
+          {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Desktop layout",
+            "options": [
+              {
+                "group": "Outside",
+                "value": "outside-top-left",
+                "label": "Left top"
+              },
+              {
+                "group": "Outside",
+                "value": "outside-center-left",
+                "label": "Left center"
+              },
+              {
+                "group": "Outside",
+                "value": "outside-bottom-left",
+                "label": "Left bottom"
+              },
+              {
+                "group": "Outside",
+                "value": "outside-top-right",
+                "label": "Right top"
+              },
+              {
+                "group": "Outside",
+                "value": "outside-center-right",
+                "label": "Right center"
+              },
+              {
+                "group": "Outside",
+                "value": "outside-bottom-right",
+                "label": "Right bottom"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-top-left",
+                "label": "Top left"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-top-center",
+                "label": "Top center"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-top-right",
+                "label": "Top right"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-center-left",
+                "label": "Center left"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-center-center",
+                "label": "Center middle"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-center-right",
+                "label": "Center right"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "group": "Overlay",
+                "value": "overlay-bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "overlay-center-center"
+          },
+          {
+            "type": "select",
+            "id": "layout_mobile",
+            "label": "Mobile layout",
+            "options": [
+              {
+                "value": "above",
+                "label": "Above map"
+              },
+              {
+                "value": "below",
+                "label": "Below map"
+              }
+            ],
+            "default": "below"
+          },
+          {
+            "type": "header",
+            "content": "Map"
+          },
+          {
+            "type": "text",
+            "id": "address",
+            "label": "Map address",
+            "default": "1221 Broad St, Victoria, BC"
+          },
+          {
+            "type": "text",
+            "id": "api_key",
+            "label": "Google Maps API key",
+            "info": "You’ll need to enable both [Google Maps](https://help.shopify.com/manual/using-themes/troubleshooting/map-section-api-key) and [Geocoding](https://developers.google.com/maps/documentation/geocoding/get-api-key) API keys to display the map."
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_custom_colors",
+            "label": "Use custom map colors"
+          },
+          {
+            "type": "color",
+            "id": "foreground_color",
+            "label": "Map foreground color",
+            "default": "#292929"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Map background color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "range",
+            "id": "zoom",
+            "label": "Map zoom level",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "unit": "x",
+            "default": 2
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Displayed when the map is not used or cannot be loaded."
+          },
+          {
+            "type": "select",
+            "id": "image_position",
+            "label": "Image position",
+            "options": [
+              {
+                "label": "Top left",
+                "value": "top left"
+              },
+              {
+                "label": "Top center",
+                "value": "top center"
+              },
+              {
+                "label": "Top right",
+                "value": "top right"
+              },
+              {
+                "label": "Center left",
+                "value": "center left"
+              },
+              {
+                "label": "Center middle",
+                "value": "center center"
+              },
+              {
+                "label": "Center right",
+                "value": "center right"
+              },
+              {
+                "label": "Bottom left",
+                "value": "bottom left"
+              },
+              {
+                "label": "Bottom center",
+                "value": "bottom center"
+              },
+              {
+                "label": "Bottom right",
+                "value": "bottom right"
+              }
+            ],
+            "default": "center center"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Color",
+            "default": "#000000"
+          },
+          {
+            "type": "range",
+            "id": "opacity",
+            "label": "Opacity",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 10
+          }
+        ]
+      },
+      {
+        "type": "search",
+        "name": "Search",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Search"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "<p>Use this section to help customers find the products they're looking for.</p>"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "text",
+            "id": "placeholder",
+            "label": "Search box placeholder",
+            "default": "What are you looking for?"
+          },
+          {
+            "type": "header",
+            "content": "Live search"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_live_search",
+            "label": "Enable live search"
+          },
+          {
+            "type": "select",
+            "id": "live_search_content_types",
+            "label": "Display",
+            "options": [
+              {
+                "value": "product",
+                "label": "Products only"
+              },
+              {
+                "value": "page,product",
+                "label": "Products and pages"
+              },
+              {
+                "value": "article,product",
+                "label": "Products and posts"
+              },
+              {
+                "value": "article,page,product",
+                "label": "Products, posts, and pages"
+              }
+            ],
+            "default": "article,page,product"
+          },
+          {
+            "id": "search_quick_links",
+            "type": "link_list",
+            "label": "Quick links",
+            "info": "Displays menu links below the search box the first time it is opened. This menu won't show dropdown items."
+          },
+          {
+            "type": "header",
+            "content": "Background"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "position",
+            "label": "Position",
+            "info": "Adjusts the focal point of the image. This setting will not have a noticeable impact if the dimensions of your image match the dimensions of the section.",
+            "default": "center-center",
+            "options": [
+              {
+                "label": "Top left",
+                "value": "top-left"
+              },
+              {
+                "label": "Top center",
+                "value": "top-center"
+              },
+              {
+                "label": "Top right",
+                "value": "top-right"
+              },
+              {
+                "label": "Center left",
+                "value": "center-left"
+              },
+              {
+                "label": "Center middle",
+                "value": "center-center"
+              },
+              {
+                "label": "Center right",
+                "value": "center-right"
+              },
+              {
+                "label": "Bottom left",
+                "value": "bottom-left"
+              },
+              {
+                "label": "Bottom center",
+                "value": "bottom-center"
+              },
+              {
+                "label": "Bottom right",
+                "value": "bottom-right"
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "checkbox",
+            "id": "show-overlay",
+            "label": "Show overlay",
+            "default": false
+          },
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Overlay color",
+            "default": "#000000"
+          },
+          {
+            "type": "range",
+            "id": "opacity",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Video",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Video"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Video"
+          },
+          {
+            "type": "video_url",
+            "id": "url",
+            "label": "Link",
+            "accept": ["youtube", "vimeo"],
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_caption",
+            "label": "Show Caption"
+          },
+          {
+            "type": "richtext",
+            "id": "caption",
+            "label": "Caption",
+            "default": "<p>A short description of the video.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "label": "Autoplay video"
+          },
+          {
+            "type": "select",
+            "id": "aspect_ratio",
+            "label": "Aspect ratio",
+            "options": [
+              {
+                "label": "16:9",
+                "value": "16-9"
+              },
+              {
+                "label": "21:9",
+                "value": "21-9"
+              }
+            ]
+          },
+          {
+            "type": "image_picker",
+            "id": "cover",
+            "label": "Cover image"
+          },
+          {
+            "type": "select",
+            "id": "position",
+            "label": "Cover image position",
+            "info": "Adjusts the focal point of the image. This setting will not have a noticeable impact if the dimensions of your image match the dimensions of the section.",
+            "options": [
+              {
+                "label": "Top left",
+                "value": "top-left"
+              },
+              {
+                "label": "Top center",
+                "value": "top-center"
+              },
+              {
+                "label": "Top right",
+                "value": "top-right"
+              },
+              {
+                "label": "Center left",
+                "value": "center-left"
+              },
+              {
+                "label": "Center",
+                "value": "center-center"
+              },
+              {
+                "label": "Center right",
+                "value": "center-right"
+              },
+              {
+                "label": "Bottom left",
+                "value": "bottom-left"
+              },
+              {
+                "label": "Bottom center",
+                "value": "bottom-center"
+              },
+              {
+                "label": "Bottom right",
+                "value": "bottom-right"
+              }
+            ],
+            "default": "center-center"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_overlay",
+            "label": "Show overlay"
+          },
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Color",
+            "default": "#000000"
+          },
+          {
+            "type": "range",
+            "id": "opacity",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          }
+        ]
+      },
+      {
+        "type": "twitter-feed",
+        "name": "Twitter Feed",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Twitter feed"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Twitter settings"
+          },
+          {
+            "type": "text",
+            "id": "username",
+            "label": "Username"
+          },
+          {
+            "type": "checkbox",
+            "id": "retweets",
+            "label": "Show retweets",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "images",
+            "label": "Show images",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "rich-text",
+        "name": "Rich text",
+        "settings": [
+          {
+            "id": "width",
+            "type": "select",
+            "label": "Section width",
+            "options": [
+              {
+                "value": "regular",
+                "label": "Regular"
+              },
+              {
+                "value": "wide",
+                "label": "Wide"
+              },
+              {
+                "value": "full-width",
+                "label": "Full width"
+              }
+            ],
+            "default": "regular"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Text settings"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Rich text"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this section to welcome customers to your store, say a bit about your brand, or share news and seasonal promotions.</p>"
+          },
+          {
+            "id": "heading_size",
+            "type": "select",
+            "label": "Heading size",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "medium",
+                "label": "Medium"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              }
+            ],
+            "default": "medium"
+          },
+          {
+            "id": "text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          }
+        ]
+      },
+      {
+        "type": "grid",
+        "name": "Grid",
+        "settings": [
+          {
+            "type": "text",
+            "id": "sectionuse",
+            "label": "# of times section has been used",
+            "default": "1",
+            "info": "Enter how many times you've used this section on page e.g 1 if this is the first or 2 if second. No spaces."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Grid"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "First Grid",
+            "info": "First grid settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "gridone_show",
+            "label": "Show grid?",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "id": "gridone_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "gridone_preheading",
+            "label": "Preheading",
+            "default": "Preheading"
+          },
+          {
+            "type": "color",
+            "id": "gridone_preheading_color",
+            "label": "Preheading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "text",
+            "id": "gridone_title",
+            "label": "Heading",
+            "default": "Grid"
+          },
+          {
+            "type": "color",
+            "id": "gridone_heading_color",
+            "label": "Heading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "textarea",
+            "id": "gridone_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "gridone_text_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "gridone_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "gridone_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "gridone_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              },
+              {
+                "value": "signpost",
+                "label": "Signpost link"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "color",
+            "id": "gridone_signpost_color",
+            "label": "Signpost link color",
+            "default": "#4D4D4D"
+          },
+          {
+            "id": "gridone_text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-center",
+                "label": "Center middle"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "top-left"
+          },
+          {
+            "type": "header",
+            "content": "Desktop size"
+          },
+          {
+            "type": "select",
+            "id": "gridone_promo_width",
+            "label": "Width",
+            "options": [
+              {
+                "value": "half-width",
+                "label": "Half width"
+              },
+              {
+                "value": "full-width",
+                "label": "Full width"
+              }
+            ],
+            "default": "half-width"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "gridone_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "gridone_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "gridone_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "header",
+            "content": "Second Grid",
+            "info": "Second grid settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "gridtwo_show",
+            "label": "Show grid?",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "id": "gridtwo_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "gridtwo_preheading",
+            "label": "Preheading",
+            "default": "Preheading"
+          },
+          {
+            "type": "color",
+            "id": "gridtwo_preheading_color",
+            "label": "Preheading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "text",
+            "id": "gridtwo_title",
+            "label": "Heading",
+            "default": "Grid"
+          },
+          {
+            "type": "color",
+            "id": "gridtwo_heading_color",
+            "label": "Heading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "textarea",
+            "id": "gridtwo_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "gridtwo_text_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "gridtwo_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "gridtwo_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "gridtwo_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              },
+              {
+                "value": "signpost",
+                "label": "Signpost link"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "color",
+            "id": "gridtwo_signpost_color",
+            "label": "Signpost link color",
+            "default": "#4D4D4D"
+          },
+          {
+            "id": "gridtwo_text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-center",
+                "label": "Center middle"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "top-left"
+          },
+          {
+            "type": "header",
+            "content": "Desktop size"
+          },
+          {
+            "type": "select",
+            "id": "gridtwo_promo_width",
+            "label": "Width",
+            "options": [
+              {
+                "value": "half-width",
+                "label": "Half width"
+              },
+              {
+                "value": "full-width",
+                "label": "Full width"
+              }
+            ],
+            "default": "half-width"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "gridtwo_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "gridtwo_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "gridtwo_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "header",
+            "content": "Third Grid",
+            "info": "Third grid settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "gridthree_show",
+            "label": "Show grid?",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "id": "gridthree_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "gridthree_preheading",
+            "label": "Preheading",
+            "default": "Preheading"
+          },
+          {
+            "type": "color",
+            "id": "gridthree_preheading_color",
+            "label": "Preheading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "text",
+            "id": "gridthree_title",
+            "label": "Heading",
+            "default": "Grid"
+          },
+          {
+            "type": "color",
+            "id": "gridthree_heading_color",
+            "label": "Heading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "textarea",
+            "id": "gridthree_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "gridthree_text_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "gridthree_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "gridthree_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "gridthree_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              },
+              {
+                "value": "signpost",
+                "label": "Signpost link"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "color",
+            "id": "gridthree_signpost_color",
+            "label": "Signpost link color",
+            "default": "#4D4D4D"
+          },
+          {
+            "id": "gridthree_text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-center",
+                "label": "Center middle"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "top-left"
+          },
+          {
+            "type": "header",
+            "content": "Desktop size"
+          },
+          {
+            "type": "select",
+            "id": "gridthree_promo_width",
+            "label": "Width",
+            "options": [
+              {
+                "value": "half-width",
+                "label": "Half width"
+              },
+              {
+                "value": "full-width",
+                "label": "Full width"
+              }
+            ],
+            "default": "half-width"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "gridthree_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "gridthree_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "gridthree_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "header",
+            "content": "Fourth Grid",
+            "info": "Fourth grid settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "gridfour_show",
+            "label": "Show grid?",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "id": "gridfour_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "gridfour_preheading",
+            "label": "Preheading",
+            "default": "Preheading"
+          },
+          {
+            "type": "color",
+            "id": "gridfour_preheading_color",
+            "label": "Preheading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "text",
+            "id": "gridfour_title",
+            "label": "Heading",
+            "default": "Grid"
+          },
+          {
+            "type": "color",
+            "id": "gridfour_heading_color",
+            "label": "Heading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "textarea",
+            "id": "gridfour_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "gridfour_text_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "gridfour_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "gridfour_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "gridfour_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              },
+              {
+                "value": "signpost",
+                "label": "Signpost link"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "color",
+            "id": "gridfour_signpost_color",
+            "label": "Signpost link color",
+            "default": "#4D4D4D"
+          },
+          {
+            "id": "gridfour_text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-center",
+                "label": "Center middle"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "top-left"
+          },
+          {
+            "type": "header",
+            "content": "Desktop size"
+          },
+          {
+            "type": "select",
+            "id": "gridfour_promo_width",
+            "label": "Width",
+            "options": [
+              {
+                "value": "half-width",
+                "label": "Half width"
+              },
+              {
+                "value": "full-width",
+                "label": "Full width"
+              }
+            ],
+            "default": "half-width"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "gridfour_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "gridfour_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "gridfour_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          }
+        ]
+      },
+      {
+        "type": "logo-list",
+        "name": "Logo list",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Logo list"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Logo one settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "logoone_show",
+              "label": "Show logo?",
+              "default": true
+          },
+          {
+            "id": "logoone_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "320 x 320px .png recommended"
+          },
+          {
+            "type": "text",
+            "id": "logoone_link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Logo two settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "logotwo_show",
+              "label": "Show logo?",
+              "default": true
+          },
+          {
+            "id": "logotwo_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "320 x 320px .png recommended"
+          },
+          {
+            "type": "text",
+            "id": "logotwo_link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Logo three settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "logothree_show",
+              "label": "Show logo?",
+              "default": true
+          },
+          {
+            "id": "logothree_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "320 x 320px .png recommended"
+          },
+          {
+            "type": "text",
+            "id": "logothree_link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Logo four settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "logofour_show",
+              "label": "Show logo?",
+              "default": true
+          },
+          {
+            "id": "logofour_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "320 x 320px .png recommended"
+          },
+          {
+            "type": "text",
+            "id": "logofour_link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Logo five settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "logofive_show",
+              "label": "Show logo?",
+              "default": true
+          },
+          {
+            "id": "logofive_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "320 x 320px .png recommended"
+          },
+          {
+            "type": "text",
+            "id": "logofive_link",
+            "label": "Link"
+          }
+        ]
+      },
+      {
+        "type": "image-w-text-overlay",
+        "name": "Image with text overlay",
+        "settings": [
+          {
+            "type": "select",
+            "id": "section_height",
+            "label": "Section height",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "medium",
+                "label": "Medium"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              },
+              {
+                "value": "original",
+                "label": "Original aspect ratio"
+              }
+            ],
+            "default": "medium"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "position",
+            "label": "Position",
+            "info": "Adjusts the focal point of the image. This setting will not have a noticeable impact if the dimensions of your image match the dimensions of the section.",
+            "options": [
+              {
+                "label": "Top left",
+                "value": "top left"
+              },
+              {
+                "label": "Top center",
+                "value": "top center"
+              },
+              {
+                "label": "Top right",
+                "value": "top right"
+              },
+              {
+                "label": "Center left",
+                "value": "center left"
+              },
+              {
+                "label": "Center middle",
+                "value": "center center"
+              },
+              {
+                "label": "Center right",
+                "value": "center right"
+              },
+              {
+                "label": "Bottom left",
+                "value": "bottom left"
+              },
+              {
+                "label": "Bottom center",
+                "value": "bottom center"
+              },
+              {
+                "label": "Bottom right",
+                "value": "bottom right"
+              }
+            ],
+            "default": "center center"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Image with text overlay"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Say a bit about your brand, a specific product, or promotion.</p>"
+          },
+          {
+            "type": "select",
+            "id": "content_position",
+            "label": "Content position",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-center",
+                "label": "Center center"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "center-center"
+          },
+          {
+            "type":      "select",
+            "id":        "overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "solid"
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Text color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "overlay_background",
+            "label": "Background color",
+            "default": "#000000"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Background color opacity",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text",
+            "default": "Button"
+          }
+        ]
+      },
+      {
+        "type": "featured-collection",
+        "name": "Featured Collection",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Featured collection"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Collection"
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "range",
+            "id": "product_count",
+            "label": "Number of products",
+            "min": 5,
+            "max": 25,
+            "step": 5,
+            "default": 10
+          },
+          {
+            "type": "select",
+            "id": "product_layout",
+            "label": "Layout",
+            "options": [
+              {
+                "value": "slideshow",
+                "label": "Slideshow"
+              },
+              {
+                "value": "grid",
+                "label": "Grid"
+              }
+            ],
+            "default": "slideshow"
+          },
+          {
+            "type": "header",
+            "content": "Call to action"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "Label",
+            "default": "Shop collection"
+          },
+          {
+            "id": "cta_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_with_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_with_icon",
+                "label": "Secondary with icon"
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Background"
+          },
+          {
+            "id": "background_image",
+            "type": "image_picker",
+            "label": "Background image"
+          },
+          {
+            "id": "background_image_position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-middle",
+                "label": "Top middle"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-middle",
+                "label": "Center middle"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-middle",
+                "label": "Bottom middle"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "center-middle"
+          },
+          {
+            "type": "header",
+            "content": "Background overlay"
+          },
+          {
+            "id": "background_overlay_style",
+            "type": "select",
+            "label": "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default": "none"
+          },
+          {
+            "id": "background_overlay_color",
+            "type": "color",
+            "label": "Overlay color"
+          },
+          {
+            "id": "background_overlay_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+              "type": "header",
+              "content": "Title card",
+              "info": "There will be one less product showing when using the Title Card"
+          },
+          {
+              "type": "checkbox",
+              "id": "usetitlecard",
+              "label": "Enable title card?",
+              "default": false
+          },
+          {
+            "type": "select",
+            "id": "banner_position",
+            "label": "Position",
+            "options": [
+              {
+                "value": "first",
+                "label": "Beginning"
+              },
+              {
+                "value": "last",
+                "label": "End"
+              }
+            ],
+            "default": "last"
+          },
+          {
+            "type": "text",
+            "id": "banner_preheading",
+            "label": "Preheading",
+            "default": "Shop this"
+          },
+          {
+            "type": "text",
+            "id": "banner_heading",
+            "label": "Heading",
+            "default": "Collection"
+          },
+          {
+            "type": "color",
+            "id": "banner_preheading_color",
+            "label": "Preheading color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "banner_heading_color",
+            "label": "Heading color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "banner_overlay_color",
+            "label": "Overlay color"
+          },
+          {
+            "type": "range",
+            "id": "banner_overlay_opacity",
+            "label": "Overlay opacity",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "id": "banner_image",
+            "type": "image_picker",
+            "label": "Background image",
+            "info": "500 x 750px .jpg recommended"
+          }
+        ]
+      },
+      {
+        "type": "featured-product",
+        "name": "Featured Product",
+        "settings": [
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Product settings"
+          },
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Product"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_description",
+            "label": "Show description",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_dcb",
+            "label": "Show dynamic checkout button",
+            "info": "Customers will be shown their preferred payment method, based on their device, shopping history and the options you've enabled. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "product_cart_redirect",
+            "label": "Enable cart redirection",
+            "info": "Automatically sends users to the Cart page after adding a product.",
+            "default": false
+          },
+          {
+            "type": "header",
+            "content": "Media"
+          },
+          {
+            "type": "paragraph",
+            "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media/product-media-types)"
+          },
+          {
+            "type": "select",
+            "id": "gallery_aspect_ratio",
+            "label": "Aspect ratio",
+            "options": [
+              { "value": "natural", "label": "Natural" },
+              { "value": "short", "label": "Short (4:3)" },
+              { "value": "square", "label": "Square (1:1)" },
+              { "value": "tall", "label": "Tall (2:3)" }
+            ],
+            "default": "natural"
+          },
+          {
+            "type": "checkbox",
+            "id": "gallery_image_crop",
+            "label": "Enable image crop",
+            "info": "If disabled, white space will be applied around the image. Has no effect when media aspect ratio is set to natural.",
+            "default": false
+          },
+          {
+            "id": "gallery_thumbnail_position",
+            "type": "select",
+            "label": "Thumbnails position",
+            "options": [
+              {
+                "value": "below",
+                "label": "Below main image"
+              },
+              {
+                "value": "left",
+                "label": "Left of main image"
+              }
+            ],
+            "default": "below"
+          },
+          {
+            "type": "checkbox",
+            "id": "gallery_video_autoplay",
+            "label": "Enable video autoplay",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "gallery_video_looping",
+            "label": "Enable video looping",
+            "default": true
+          },
+          {
+            "id": "gallery_hover_zoom",
+            "type": "select",
+            "label": "Roll-over image zoom",
+            "options": [
+              {
+                "value": "disabled",
+                "label": "Disabled"
+              },
+              {
+                "value": "replace",
+                "label": "Enabled (replace main image)"
+              }
+            ],
+            "info": "Only applies to desktop screen sizes.",
+            "default": "disabled"
+          },
+          {
+            "type": "paragraph",
+            "content": "For the best zoom results, make sure your images are larger than 1600px."
+          }
+        ]
+      },
+      {
+        "type": "mosaic",
+        "name": "Mosaic",
+        "settings": [
+          {
+            "type": "text",
+            "id": "sectionuse",
+            "label": "# of times section has been used",
+            "default": "1",
+            "info": "Enter how many times you've used this section on page e.g 1 if this is the first or 2 if second. No spaces."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Mosaic"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "id": "section_height",
+            "type": "select",
+            "label": "Section height",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "medium",
+                "label": "Medium"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              }
+            ],
+            "default": "small"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Layout"
+          },
+          {
+            "id": "text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Center left"
+              },
+              {
+                "value": "center-center",
+                "label": "Center middle"
+              },
+              {
+                "value": "center-right",
+                "label": "Center right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "top-left"
+          },
+          {
+            "id": "maintain_aspect_ratio",
+            "type": "checkbox",
+            "label": "Maintain aspect ratio",
+            "default": false
+          },
+          {
+            "type": "header",
+            "content": "Mobile"
+          },
+          {
+            "id": "compress_blocks",
+            "type": "checkbox",
+            "label": "Compress blocks",
+            "default": false
+          },
+          {
+              "type": "header",
+              "content": "First Mosaic Block",
+              "info": "First Mosaic block settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "index1use",
+            "label": "Enable block",
+            "default": true
+          },
+          {
+            "id": "index1_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "index1_title",
+            "label": "Heading",
+            "default": "Mosaic"
+          },
+          {
+            "type": "textarea",
+            "id": "index1_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "index1_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "index1_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "index1_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "index1_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "index1_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "index1_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "index1_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+              "type": "header",
+              "content": "Second Mosaic Block",
+              "info": "Second Mosaic block settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "index2use",
+            "label": "Enable block",
+            "default": true
+          },
+          {
+            "id": "index2_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "index2_title",
+            "label": "Heading",
+            "default": "Mosaic"
+          },
+          {
+            "type": "textarea",
+            "id": "index2_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "index2_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "index2_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "index2_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "index2_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "index2_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "index2_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "index2_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+              "type": "header",
+              "content": "Third Mosaic Block",
+              "info": "Third Mosaic block settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "index3use",
+            "label": "Enable block",
+            "default": true
+          },
+          {
+            "id": "index3_image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "index3_title",
+            "label": "Heading",
+            "default": "Mosaic"
+          },
+          {
+            "type": "textarea",
+            "id": "index3_text",
+            "label": "Text",
+            "default": "Use this section to welcome customers to your store, say a bit about your brand, or share news.",
+            "info": "120-character limit"
+          },
+          {
+            "type": "color",
+            "id": "index3_color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "index3_block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "index3_button_text",
+            "label": "Button text"
+          },
+          {
+            "id": "index3_button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type":      "select",
+            "id":        "index3_overlay_style",
+            "label":     "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default":   "none"
+          },
+          {
+            "id": "index3_background",
+            "type": "color",
+            "label": "Color"
+          },
+          {
+            "id": "index3_opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          }
+        ]
+      },
+      {
+        "type": "highlights-banner",
+        "name": "Highlights Banner",
+        "settings": [
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color",
+            "default": "#f8f8f8"
+          },
+          {
+            "type":      "select",
+            "id":        "text_alignment",
+            "label":     "Banner text alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default":   "left"
+        },
+          {
+            "type": "header",
+            "content": "Colors"
+          },
+          {
+            "id": "heading_color",
+            "type": "color",
+            "label": "Banner headings",
+            "default": "#4d4d4d"
+          },
+          {
+            "id": "color",
+            "type": "color",
+            "label": "Banner text",
+            "default": "#4d4d4d"
+          },
+          {
+            "id": "icon_color",
+            "type": "color",
+            "label": "Icon",
+            "default": "#4d4d4d"
+          },
+          {
+            "id": "dividers_color",
+            "type": "color",
+            "label": "Dividers",
+            "default": "#e3e3e3"
+          },
+          {
+            "id": "inner_background_color",
+            "type": "color",
+            "label": "Background",
+            "default": "#f8f8f8"
+          },
+          {
+              "type": "header",
+              "content": "First Hightlight",
+              "info": "First hightlight settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "showh1",
+            "label": "Use first highlight",
+            "default": true
+          },
+          {
+            "id": "h1_icon",
+            "type": "select",
+            "label": "Icon",
+            "options": [
+              {
+                "value": "none",
+                "label": "No icon"
+              },
+              {
+                "value": "icon-cell-phone",
+                "label": "Cellphone"
+              },
+              {
+                "value": "icon-chat",
+                "label": "Chat"
+              },
+              {
+                "value": "icon-chat-alternate",
+                "label": "Chat alternate"
+              },
+              {
+                "value": "icon-credit-card",
+                "label": "Credit card"
+              },
+              {
+                "value": "icon-delivery",
+                "label": "Delivery"
+              },
+              {
+                "value": "icon-delivery-alt",
+                "label": "Delivery alternate"
+              },
+              {
+                "value": "icon-email",
+                "label": "Email"
+              },
+              {
+                "value": "icon-envelope",
+                "label": "Envelope"
+              },
+              {
+                "value": "icon-gift-card",
+                "label": "Gift card"
+              },
+              {
+                "value": "icon-heart",
+                "label": "Heart"
+              },
+              {
+                "value": "icon-label-tag",
+                "label": "Label tag"
+              },
+              {
+                "value": "icon-lock-alternate",
+                "label": "Lock"
+              },
+              {
+                "value": "icon-people",
+                "label": "People"
+              },
+              {
+                "value": "icon-people-alternate",
+                "label": "People alternate"
+              },
+              {
+                "value": "icon-pin",
+                "label": "Pin"
+              },
+              {
+                "value": "icon-question-mark",
+                "label": "Question mark"
+              },
+              {
+                "value": "icon-smile",
+                "label": "Smile"
+              },
+              {
+                "value": "icon-store",
+                "label": "Store"
+              },
+              {
+                "value": "icon-transfer",
+                "label": "Transfer"
+              },
+              {
+                "value": "icon-wallet",
+                "label": "Wallet"
+              }
+            ],
+            "default": "icon-cell-phone"
+          },
+          {
+            "id": "h1_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "50x50 recommended. Uploading an image will override any icon selected above."
+          },
+          {
+            "id": "h1_title",
+            "type": "text",
+            "label": "Heading",
+            "default": "Highlight"
+          },
+          {
+            "id": "h1_text",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Highlight text</p>"
+          },
+          {
+            "id": "h1_link",
+            "type": "url",
+            "label": "Link"
+          },
+          {
+              "type": "header",
+              "content": "Second Hightlight",
+              "info": "Second hightlight settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "showh2",
+            "label": "Use second highlight",
+            "default": true
+          },
+          {
+            "id": "h2_icon",
+            "type": "select",
+            "label": "Icon",
+            "options": [
+              {
+                "value": "none",
+                "label": "No icon"
+              },
+              {
+                "value": "icon-cell-phone",
+                "label": "Cellphone"
+              },
+              {
+                "value": "icon-chat",
+                "label": "Chat"
+              },
+              {
+                "value": "icon-chat-alternate",
+                "label": "Chat alternate"
+              },
+              {
+                "value": "icon-credit-card",
+                "label": "Credit card"
+              },
+              {
+                "value": "icon-delivery",
+                "label": "Delivery"
+              },
+              {
+                "value": "icon-delivery-alt",
+                "label": "Delivery alternate"
+              },
+              {
+                "value": "icon-email",
+                "label": "Email"
+              },
+              {
+                "value": "icon-envelope",
+                "label": "Envelope"
+              },
+              {
+                "value": "icon-gift-card",
+                "label": "Gift card"
+              },
+              {
+                "value": "icon-heart",
+                "label": "Heart"
+              },
+              {
+                "value": "icon-label-tag",
+                "label": "Label tag"
+              },
+              {
+                "value": "icon-lock-alternate",
+                "label": "Lock"
+              },
+              {
+                "value": "icon-people",
+                "label": "People"
+              },
+              {
+                "value": "icon-people-alternate",
+                "label": "People alternate"
+              },
+              {
+                "value": "icon-pin",
+                "label": "Pin"
+              },
+              {
+                "value": "icon-question-mark",
+                "label": "Question mark"
+              },
+              {
+                "value": "icon-smile",
+                "label": "Smile"
+              },
+              {
+                "value": "icon-store",
+                "label": "Store"
+              },
+              {
+                "value": "icon-transfer",
+                "label": "Transfer"
+              },
+              {
+                "value": "icon-wallet",
+                "label": "Wallet"
+              }
+            ],
+            "default": "icon-cell-phone"
+          },
+          {
+            "id": "h2_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "50x50 recommended. Uploading an image will override any icon selected above."
+          },
+          {
+            "id": "h2_title",
+            "type": "text",
+            "label": "Heading",
+            "default": "Highlight"
+          },
+          {
+            "id": "h2_text",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Highlight text</p>"
+          },
+          {
+            "id": "h2_link",
+            "type": "url",
+            "label": "Link"
+          },
+          {
+              "type": "header",
+              "content": "Third Hightlight",
+              "info": "Third hightlight settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "showh3",
+            "label": "Use third highlight",
+            "default": true
+          },
+          {
+            "id": "h3_icon",
+            "type": "select",
+            "label": "Icon",
+            "options": [
+              {
+                "value": "none",
+                "label": "No icon"
+              },
+              {
+                "value": "icon-cell-phone",
+                "label": "Cellphone"
+              },
+              {
+                "value": "icon-chat",
+                "label": "Chat"
+              },
+              {
+                "value": "icon-chat-alternate",
+                "label": "Chat alternate"
+              },
+              {
+                "value": "icon-credit-card",
+                "label": "Credit card"
+              },
+              {
+                "value": "icon-delivery",
+                "label": "Delivery"
+              },
+              {
+                "value": "icon-delivery-alt",
+                "label": "Delivery alternate"
+              },
+              {
+                "value": "icon-email",
+                "label": "Email"
+              },
+              {
+                "value": "icon-envelope",
+                "label": "Envelope"
+              },
+              {
+                "value": "icon-gift-card",
+                "label": "Gift card"
+              },
+              {
+                "value": "icon-heart",
+                "label": "Heart"
+              },
+              {
+                "value": "icon-label-tag",
+                "label": "Label tag"
+              },
+              {
+                "value": "icon-lock-alternate",
+                "label": "Lock"
+              },
+              {
+                "value": "icon-people",
+                "label": "People"
+              },
+              {
+                "value": "icon-people-alternate",
+                "label": "People alternate"
+              },
+              {
+                "value": "icon-pin",
+                "label": "Pin"
+              },
+              {
+                "value": "icon-question-mark",
+                "label": "Question mark"
+              },
+              {
+                "value": "icon-smile",
+                "label": "Smile"
+              },
+              {
+                "value": "icon-store",
+                "label": "Store"
+              },
+              {
+                "value": "icon-transfer",
+                "label": "Transfer"
+              },
+              {
+                "value": "icon-wallet",
+                "label": "Wallet"
+              }
+            ],
+            "default": "icon-cell-phone"
+          },
+          {
+            "id": "h3_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "50x50 recommended. Uploading an image will override any icon selected above."
+          },
+          {
+            "id": "h3_title",
+            "type": "text",
+            "label": "Heading",
+            "default": "Highlight"
+          },
+          {
+            "id": "h3_text",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Highlight text</p>"
+          },
+          {
+            "id": "h3_link",
+            "type": "url",
+            "label": "Link"
+          },
+          {
+              "type": "header",
+              "content": "Fourth Hightlight",
+              "info": "Fourth hightlight settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "showh4",
+            "label": "Use fourth highlight",
+            "default": true
+          },
+          {
+            "id": "h4_icon",
+            "type": "select",
+            "label": "Icon",
+            "options": [
+              {
+                "value": "none",
+                "label": "No icon"
+              },
+              {
+                "value": "icon-cell-phone",
+                "label": "Cellphone"
+              },
+              {
+                "value": "icon-chat",
+                "label": "Chat"
+              },
+              {
+                "value": "icon-chat-alternate",
+                "label": "Chat alternate"
+              },
+              {
+                "value": "icon-credit-card",
+                "label": "Credit card"
+              },
+              {
+                "value": "icon-delivery",
+                "label": "Delivery"
+              },
+              {
+                "value": "icon-delivery-alt",
+                "label": "Delivery alternate"
+              },
+              {
+                "value": "icon-email",
+                "label": "Email"
+              },
+              {
+                "value": "icon-envelope",
+                "label": "Envelope"
+              },
+              {
+                "value": "icon-gift-card",
+                "label": "Gift card"
+              },
+              {
+                "value": "icon-heart",
+                "label": "Heart"
+              },
+              {
+                "value": "icon-label-tag",
+                "label": "Label tag"
+              },
+              {
+                "value": "icon-lock-alternate",
+                "label": "Lock"
+              },
+              {
+                "value": "icon-people",
+                "label": "People"
+              },
+              {
+                "value": "icon-people-alternate",
+                "label": "People alternate"
+              },
+              {
+                "value": "icon-pin",
+                "label": "Pin"
+              },
+              {
+                "value": "icon-question-mark",
+                "label": "Question mark"
+              },
+              {
+                "value": "icon-smile",
+                "label": "Smile"
+              },
+              {
+                "value": "icon-store",
+                "label": "Store"
+              },
+              {
+                "value": "icon-transfer",
+                "label": "Transfer"
+              },
+              {
+                "value": "icon-wallet",
+                "label": "Wallet"
+              }
+            ],
+            "default": "icon-cell-phone"
+          },
+          {
+            "id": "h4_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "50x50 recommended. Uploading an image will override any icon selected above."
+          },
+          {
+            "id": "h4_title",
+            "type": "text",
+            "label": "Heading",
+            "default": "Highlight"
+          },
+          {
+            "id": "h4_text",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Highlight text</p>"
+          },
+          {
+            "id": "h4_link",
+            "type": "url",
+            "label": "Link"
+          }
+        ]
+      },
+      {
+        "type": "testimonials",
+        "name": "Testimonials",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Testimonials"
+          },
+          {
+            "type": "richtext",
+            "id": "subtitle",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "title_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subtitle_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+              "type": "header",
+              "content": "First Testimonial",
+              "info": "First testimonial settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "t1_show",
+              "label": "Show testimonial",
+              "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "t1_image",
+            "label": "Image"
+          },
+          {
+            "type": "richtext",
+            "id": "t1_quote",
+            "label": "Quote",
+            "default": "<p>Showcase up to five testimonials to build trust with potential customers.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "t1_show_quotations",
+            "label": "Show quotations",
+            "default": true
+          },
+          {
+            "type": "richtext",
+            "id": "t1_citation",
+            "label": "Citation",
+            "default": "<p>Name</p>"
+          },
+          {
+              "type": "header",
+              "content": "Second Testimonial",
+              "info": "Second testimonial settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "t2_show",
+              "label": "Show testimonial",
+              "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "t2_image",
+            "label": "Image"
+          },
+          {
+            "type": "richtext",
+            "id": "t2_quote",
+            "label": "Quote",
+            "default": "<p>Showcase up to five testimonials to build trust with potential customers.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "t2_show_quotations",
+            "label": "Show quotations",
+            "default": true
+          },
+          {
+            "type": "richtext",
+            "id": "t2_citation",
+            "label": "Citation",
+            "default": "<p>Name</p>"
+          },
+          {
+              "type": "header",
+              "content": "Third Testimonial",
+              "info": "Third testimonial settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "t3_show",
+              "label": "Show testimonial",
+              "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "t3_image",
+            "label": "Image"
+          },
+          {
+            "type": "richtext",
+            "id": "t3_quote",
+            "label": "Quote",
+            "default": "<p>Showcase up to five testimonials to build trust with potential customers.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "t3_show_quotations",
+            "label": "Show quotations",
+            "default": true
+          },
+          {
+            "type": "richtext",
+            "id": "t3_citation",
+            "label": "Citation",
+            "default": "<p>Name</p>"
+          }
+        ]
+      },
+      {
+        "type": "menu-list",
+        "name": "Menu list",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Menu list"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+              "type": "header",
+              "content": "First Menu",
+              "info": "First menu settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "m1_show",
+              "label": "Show menu?",
+              "default": true
+          },
+          {
+            "id": "m1_menu",
+            "type": "link_list",
+            "label": "Menu"
+          },
+          {
+            "id": "m1_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "360 x 360px .jpg recommended"
+          },
+          {
+              "type": "header",
+              "content": "Second Menu",
+              "info": "Second menu settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "m2_show",
+              "label": "Show menu?",
+              "default": true
+          },
+          {
+            "id": "m2_menu",
+            "type": "link_list",
+            "label": "Menu"
+          },
+          {
+            "id": "m2_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "360 x 360px .jpg recommended"
+          },
+          {
+              "type": "header",
+              "content": "Third Menu",
+              "info": "Third menu settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "m3_show",
+              "label": "Show menu?",
+              "default": true
+          },
+          {
+            "id": "m3_menu",
+            "type": "link_list",
+            "label": "Menu"
+          },
+          {
+            "id": "m3_image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "360 x 360px .jpg recommended"
+          }
+        ]
+      },
+      {
+        "type": "image-w-text",
+        "name": "Image with text",
+        "settings": [
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "range",
+            "id": "content_spacing",
+            "label": "Space between content",
+            "min": 0,
+            "max": 30,
+            "step": 1,
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Desktop image"
+          },
+          {
+            "id": "img_desktop",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "img_position_desktop",
+            "type": "select",
+            "label": "Image position",
+            "options": [
+              {
+                "value": "right",
+                "label": "Right"
+              },
+              {
+                "value": "left",
+                "label": "Left"
+              }
+            ],
+            "default": "left"
+          },
+          {
+            "id": "img_width_desktop",
+            "type": "range",
+            "label": "Desktop image width",
+            "min": 30,
+            "max": 70,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "id": "img_height_desktop",
+            "type": "radio",
+            "label": "Desktop image height",
+            "options": [
+              {
+                "value": "natural",
+                "label": "Natural height"
+              },
+              {
+                "value": "custom",
+                "label": "Custom height"
+              }
+            ],
+            "default": "natural"
+          },
+          {
+            "id": "custom_height_desktop",
+            "type": "range",
+            "label": "Desktop custom height",
+            "min": 300,
+            "max": 800,
+            "step": 5,
+            "unit": "px",
+            "default": 500
+          },
+          {
+            "type": "header",
+            "content": "Mobile image"
+          },
+          {
+            "id": "img_mobile",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "img_position_mobile",
+            "type": "select",
+            "label": "Image position",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ],
+            "default": "top"
+          },
+          {
+            "id": "img_height_mobile",
+            "type": "radio",
+            "label": "Mobile image height",
+            "options": [
+              {
+                "value": "natural",
+                "label": "Natural height"
+              },
+              {
+                "value": "custom",
+                "label": "Custom height"
+              }
+            ],
+            "default": "natural"
+          },
+          {
+            "id": "custom_height_mobile",
+            "type": "range",
+            "label": "Mobile custom height",
+            "min": 300,
+            "max": 800,
+            "step": 5,
+            "unit": "px",
+            "default": 500
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "id": "content_background_color",
+            "type": "color",
+            "label": "Background color",
+            "default": "#ffffff"
+          },
+          {
+            "id": "preheading",
+            "type": "text",
+            "label": "Preheading",
+            "default": "Preheading"
+          },
+          {
+            "id": "preheading_color",
+            "type": "color",
+            "label": "Preheading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "id": "heading",
+            "type": "text",
+            "label": "Heading",
+            "default": "Heading"
+          },
+          {
+            "id": "heading_color",
+            "type": "color",
+            "label": "Heading color",
+            "default": "#4d4d4d"
+          },
+          {
+            "id": "heading_size",
+            "type": "select",
+            "label": "Heading size",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "medium",
+                "label": "Medium"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              },
+              {
+                "value": "xlarge",
+                "label": "Extra Large"
+              }
+            ],
+            "default": "large"
+          },
+          {
+            "id": "text_content",
+            "type": "textarea",
+            "label": "Text",
+            "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+          },
+          {
+            "id": "text_content_color",
+            "type": "color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "id": "button_link",
+            "type": "url",
+            "label": "Button link"
+          },
+          {
+            "id": "button_text",
+            "type": "text",
+            "label": "Button text"
+          },
+          {
+            "id": "button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_with_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_with_icon",
+                "label": "Secondary with icon"
+              },
+              {
+                "value": "signpost",
+                "label": "Signpost link"
+              }
+            ]
+          },
+          {
+            "id": "signpost_color",
+            "type": "color",
+            "label": "Signpost color",
+            "default": "#111"
+          },
+          {
+            "id": "block_link",
+            "type": "checkbox",
+            "label": "Apply link to the whole block",
+            "default": false
+          },
+          {
+            "id": "text_vertical_position",
+            "type": "select",
+            "label": "Vertical position",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "middle",
+                "label": "Middle"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ],
+            "default": "middle"
+          },
+          {
+            "id": "text_alignment",
+            "type": "select",
+            "label": "Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          }
+        ]
+      },
+      {
+        "type": "collection-list",
+        "name": "Collection List",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Collection list"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Section heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type":      "header",
+            "content":   "Appearance"
+          },
+          {
+            "type": "select",
+            "id": "label_style",
+            "label": "Collection title font",
+            "options": [
+              {
+                "value": "label-style-heading",
+                "label": "Heading"
+              },
+              {
+                "value": "label-style-body",
+                "label": "Body"
+              }
+            ],
+            "default": "label-style-heading"
+          },
+          {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type":      "header",
+            "content":   "Desktop"
+          },
+          {
+            "type": "range",
+            "id": "desktop_collections_per_row",
+            "label": "Collections per row",
+            "min":       3,
+            "max":       6,
+            "step":      1,
+            "default":   3
+          },
+          {
+            "type": "select",
+            "id": "display_desktop_collections",
+            "label": "Number of rows",
+            "options": [
+              {
+                "value": "0",
+                "label": "Show all collections"
+              },
+              {
+                "value": "2",
+                "label": "2 rows"
+              },
+              {
+                "value": "3",
+                "label": "3 rows"
+              },
+              {
+                "value": "4",
+                "label": "4 rows"
+              },
+              {
+                "value": "5",
+                "label": "5 rows"
+              }
+            ],
+            "default": "2",
+            "info": "Customers can reveal hidden collections by clicking “Show All.”"
+          },
+          {
+            "type":      "radio",
+            "id":        "desktop_collection_width",
+            "label":     "Layout",
+            "options": [
+              { "value": "desktop-full-width", "label": "Full width" },
+              { "value": "desktop-custom-width", "label": "Custom width" }
+            ],
+            "default":   "desktop-full-width"
+          },
+          {
+            "type":      "range",
+            "id":        "layout_collection_max_width",
+            "label":     "Custom layout max width",
+            "min":       700,
+            "max":       1600,
+            "step":      10,
+            "unit":      "px",
+            "default":   1000
+          },
+          {
+            "type":      "range",
+            "id":        "desktop_collection_max_width",
+            "label":     "Custom collection max width",
+            "min":       75,
+            "max":       500,
+            "step":      5,
+            "unit":      "px",
+            "default":   300
+          },
+          {
+            "type":      "header",
+            "content":   "Mobile"
+          },
+          {
+            "type": "range",
+            "id": "mobile_collections_per_row",
+            "label": "Collections per row",
+            "min":       1,
+            "max":       3,
+            "step":      1,
+            "default":   3
+          },
+          {
+            "type": "select",
+            "id": "display_mobile_collections",
+            "label": "Number of rows",
+            "options": [
+              {
+                "value": "0",
+                "label": "Show all collections"
+              },
+              {
+                "value": "2",
+                "label": "2 rows"
+              },
+              {
+                "value": "3",
+                "label": "3 rows"
+              },
+              {
+                "value": "4",
+                "label": "4 rows"
+              },
+              {
+                "value": "5",
+                "label": "5 rows"
+              }
+            ],
+            "default": "2",
+            "info": "Customers can reveal hidden collections by clicking “Show All.”"
+          },
+          {
+            "type":      "radio",
+            "id":        "mobile_collection_width",
+            "label":     "Layout",
+            "options": [
+              { "value": "mobile-full-width", "label": "Full width" },
+              { "value": "mobile-custom-width", "label": "Custom width" }
+            ],
+            "default":   "mobile-full-width"
+          },
+          {
+            "type":      "range",
+            "id":        "mobile_collection_max_width",
+            "label":     "Custom collection max width",
+            "min":       50,
+            "max":       500,
+            "step":      5,
+            "unit":      "px",
+            "default":   80
+          },
+          {
+            "type": "header",
+            "content": "First Collection",
+            "info": "First collection settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "c1_show",
+            "label": "Show collection?",
+            "default": true
+          },
+          {
+            "id": "c1_collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "c1_image",
+            "type": "image_picker",
+            "label": "Custom image"
+          },
+          {
+            "id": "c1_collection_label",
+            "type": "text",
+            "label": "Custom collection title"
+          },
+          {
+            "id": "c1_mobile_collection_label",
+            "type": "text",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+            "type": "header",
+            "content": "Second Collection",
+            "info": "Second collection settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "c2_show",
+            "label": "Show collection?",
+            "default": true
+          },
+          {
+            "id": "c2_collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "c2_image",
+            "type": "image_picker",
+            "label": "Custom image"
+          },
+          {
+            "id": "c2_collection_label",
+            "type": "text",
+            "label": "Custom collection title"
+          },
+          {
+            "id": "c2_mobile_collection_label",
+            "type": "text",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+            "type": "header",
+            "content": "Third Collection",
+            "info": "Third collection settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "c3_show",
+            "label": "Show collection?",
+            "default": true
+          },
+          {
+            "id": "c3_collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "c3_image",
+            "type": "image_picker",
+            "label": "Custom image"
+          },
+          {
+            "id": "c3_collection_label",
+            "type": "text",
+            "label": "Custom collection title"
+          },
+          {
+            "id": "c3_mobile_collection_label",
+            "type": "text",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+            "type": "header",
+            "content": "Fourth Collection",
+            "info": "Fourth collection settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "c4_show",
+            "label": "Show collection?",
+            "default": true
+          },
+          {
+            "id": "c4_collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "c4_image",
+            "type": "image_picker",
+            "label": "Custom image"
+          },
+          {
+            "id": "c4_collection_label",
+            "type": "text",
+            "label": "Custom collection title"
+          },
+          {
+            "id": "c4_mobile_collection_label",
+            "type": "text",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+            "type": "header",
+            "content": "Fifth Collection",
+            "info": "Fifth collection settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "c5_show",
+            "label": "Show collection?",
+            "default": true
+          },
+          {
+            "id": "c5_collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "c5_image",
+            "type": "image_picker",
+            "label": "Custom image"
+          },
+          {
+            "id": "c5_collection_label",
+            "type": "text",
+            "label": "Custom collection title"
+          },
+          {
+            "id": "c5_mobile_collection_label",
+            "type": "text",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+            "type": "header",
+            "content": "Sixth Collection",
+            "info": "Sixth collection settings"
+          },
+          {
+            "type": "checkbox",
+            "id": "c6_show",
+            "label": "Show collection?",
+            "default": true
+          },
+          {
+            "id": "c6_collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "c6_image",
+            "type": "image_picker",
+            "label": "Custom image"
+          },
+          {
+            "id": "c6_collection_label",
+            "type": "text",
+            "label": "Custom collection title"
+          },
+          {
+            "id": "c6_mobile_collection_label",
+            "type": "text",
+            "label": "Custom collection title (mobile)"
+          }
+        ]
+      },
+      {
+        "type": "featured-collections",
+        "name": "Featured Collections",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Featured collections"
+          },
+          {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Heading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "label": "Section subheading color",
+            "default": "#4D4D4D"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Section background color"
+          },
+          {
+            "type": "header",
+            "content": "Promotion"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "promo_title",
+            "label": "Title",
+            "default": "Promotion"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Description",
+            "default": "Use this section to promote a group of collections.",
+            "info": "Limited to 120 characters."
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Text color",
+            "default": "#4d4d4d"
+          },
+          {
+            "type": "url",
+            "id": "block_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text",
+            "default": "Button"
+          },
+          {
+            "id": "button_style",
+            "type": "select",
+            "label": "Button style",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "primary_icon",
+                "label": "Primary with icon"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "secondary_icon",
+                "label": "Secondary with icon"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "id": "text_alignment",
+            "type": "select",
+            "label": "Text position",
+            "options": [
+              {
+                "value": "top-left",
+                "label": "Top left"
+              },
+              {
+                "value": "top-center",
+                "label": "Top center"
+              },
+              {
+                "value": "top-right",
+                "label": "Top right"
+              },
+              {
+                "value": "center-left",
+                "label": "Middle left"
+              },
+              {
+                "value": "center-center",
+                "label": "Middle center"
+              },
+              {
+                "value": "center-right",
+                "label": "Middle right"
+              },
+              {
+                "value": "bottom-left",
+                "label": "Bottom left"
+              },
+              {
+                "value": "bottom-center",
+                "label": "Bottom center"
+              },
+              {
+                "value": "bottom-right",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "bottom-left"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "select",
+            "id": "overlay_style",
+            "label": "Overlay style",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "gradient",
+                "label": "Gradient"
+              }
+            ],
+            "default": "none"
+          },
+          {
+            "id": "overlay_color",
+            "type": "color",
+            "label": "Overlay color",
+            "default": "#000000"
+          },
+          {
+            "id": "opacity",
+            "type": "range",
+            "label": "Opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "header",
+            "content": "Collections"
+          },
+          {
+            "id": "collection_label_style",
+            "type": "select",
+            "label": "Collection title font",
+            "default": "heading",
+            "options": [
+              {
+                "value": "heading",
+                "label": "Heading"
+              },
+              {
+                "value": "body",
+                "label": "Body"
+              }
+            ]
+          },
+          {
+            "id": "collection_text_alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+              "type": "header",
+              "content": "First Collection",
+              "info": "First collection settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "c1_show",
+              "label": "Show collection?",
+              "default": true
+          },
+          {
+            "type": "collection",
+            "id": "c1_collection",
+            "label": "Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "c1_image",
+            "label": "Custom image"
+          },
+          {
+            "type": "text",
+            "id": "c1_title",
+            "label": "Custom collection title"
+          },
+          {
+            "type": "text",
+            "id": "c1_title_mobile",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+              "type": "header",
+              "content": "Second Collection",
+              "info": "Second collection settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "c2_show",
+              "label": "Show collection?",
+              "default": true
+          },
+          {
+            "type": "collection",
+            "id": "c2_collection",
+            "label": "Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "c2_image",
+            "label": "Custom image"
+          },
+          {
+            "type": "text",
+            "id": "c2_title",
+            "label": "Custom collection title"
+          },
+          {
+            "type": "text",
+            "id": "c2_title_mobile",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+              "type": "header",
+              "content": "Third Collection",
+              "info": "Third collection settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "c3_show",
+              "label": "Show collection?",
+              "default": true
+          },
+          {
+            "type": "collection",
+            "id": "c3_collection",
+            "label": "Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "c3_image",
+            "label": "Custom image"
+          },
+          {
+            "type": "text",
+            "id": "c3_title",
+            "label": "Custom collection title"
+          },
+          {
+            "type": "text",
+            "id": "c3_title_mobile",
+            "label": "Custom collection title (mobile)"
+          },
+          {
+              "type": "header",
+              "content": "Fourth Collection",
+              "info": "Fourth collection settings"
+          },
+          {
+              "type": "checkbox",
+              "id": "c4_show",
+              "label": "Show collection?",
+              "default": true
+          },
+          {
+            "type": "collection",
+            "id": "c4_collection",
+            "label": "Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "c4_image",
+            "label": "Custom image"
+          },
+          {
+            "type": "text",
+            "id": "c4_title",
+            "label": "Custom collection title"
+          },
+          {
+            "type": "text",
+            "id": "c4_title_mobile",
+            "label": "Custom collection title (mobile)"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

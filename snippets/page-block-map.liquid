@@ -1,0 +1,83 @@
+<script
+  type="application/json"
+  data-section-type="dynamic-map"
+  data-section-id="{{ block.id }}"
+  data-section-data
+>
+  {
+    {% if block.settings.enable_custom_colors %}
+      {% assign background_color = block.settings.background_color %}
+      {% assign foreground_color = block.settings.foreground_color %}
+      "colors": {
+        "a": {{ foreground_color | json }},
+        "b": {{ background_color | color_mix: foreground_color, 30 | json }},
+        "c": {{ background_color | color_mix: foreground_color, 50 | json }},
+        "d": {{ background_color | color_mix: foreground_color, 70 | json }},
+        "e": {{ background_color | color_mix: '#ffffff', 98 | json }},
+        "f": {{ background_color | color_mix: '#000000', 50 | json }}
+      },
+    {% endif %}
+    "api_key": {{ block.settings.api_key | default: false | json }},
+    "address": {{ block.settings.address | json }},
+    "zoom": {{ block.settings.zoom | json }}
+  }
+</script>
+
+{% assign layout = block.settings.layout | split: '-' %}
+
+{% assign crop = 'center' %}
+{% if block.settings.image_position contains 'top' %}
+  {% assign crop = 'top' %}
+{% elsif block.settings.image_position contains 'bottom' %}
+  {% assign crop = 'bottom' %}
+{% endif %}
+
+{%- capture placeholder_image -%}
+  {%-
+    include 'placeholder_svg_uri'
+    placeholder: 'lifestyle-1'
+  -%}
+{%- endcapture -%}
+
+<div class="custompage-section dynamic-map dynamic-map-section-layout-{{ layout[0] }} dynamic-map-section-layout-y-{{ layout[0] }}-{{ layout[1] }} dynamic-map-section-layout-x-{{ layout[0] }}-{{ layout[2] }} dynamic-map-section-layout-mobile-{{ block.settings.layout_mobile }}" style="background-color: {{ block.settings.section_background_color }}">
+
+  <div class=" dynamic-map-wrapper dynamic-map-wrapper-height-{{ block.settings.section_height }}"
+    {% if block.settings.image %}
+      {% capture background_style %}
+        background-position: {{ block.settings.image_position }};
+      {% endcapture %}
+      {% include 'rimg', img: block.settings.image, size: '1400x', crop: crop, style: background_style, lazy: settings.lazy_load, background: true %}
+    {% else %}
+      style="background-image: url('{{ placeholder_image | strip }}')"
+    {% endif %}
+    data-map>
+    {% if block.settings.image %}
+      {% include 'rimg', img: block.settings.image, size: '1400x', class: 'dynamic-map-image', crop: 'center', lazy: settings.lazy_load, canvas: settings.lazy_load %}
+    {% else %}
+      <img class="dynamic-map-image" src="{{ placeholder_image | strip }}" alt="">
+    {% endif %}
+
+    <div class="dynamic-map-container" data-map-container></div>
+
+    {% if block.settings.opacity != 0 and block.settings.overlay_color != 'rgba(0,0,0,0)' %}
+      {% assign opacity = block.settings.opacity | times: 0.01 %}
+      {% assign overlay = block.settings.overlay_color | color_modify: 'alpha', opacity %}
+
+      <div class="dynamic-map-overlay" style="background-color: {{ overlay }}"></div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.title != blank or block.settings.content != blank %}
+    <div class="dynamic-map-card-wrapper">
+      <div class=" dynamic-map-card dynamic-map-card-text-alignment-{{ block.settings.text_alignment }}">
+        {% if block.settings.title != blank %}
+          <h2 class="dynamic-map-card-heading">{{ block.settings.title | escape }}</h2>
+        {% endif %}
+
+        {% if block.settings.content != blank %}
+          <div class="dynamic-map-card-content rte">{{ block.settings.content }}</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>

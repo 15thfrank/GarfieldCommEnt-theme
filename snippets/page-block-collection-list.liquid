@@ -1,0 +1,672 @@
+{% assign blocksize = 0 %}
+{% if block.settings.c1_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c2_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c3_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c4_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c5_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+{% if block.settings.c6_show %} {% assign blocksize = blocksize | plus: 1 %} {% endif %}
+
+{% style %}
+  @media (max-width: 720px) {
+
+    .clsection .mobile-custom-width .collection--item-image {
+      max-width: {{ block.settings.mobile_collection_max_width }}px;
+    }
+
+    .clsection .mobile-custom-width.text-align-left .dynamic-collection-list--item-info {
+      max-width: {{ block.settings.mobile_collection_max_width }}px;
+    }
+
+    .clsection .mobile-custom-width.text-align-right .dynamic-collection-list--item-info {
+      max-width: {{ block.settings.mobile_collection_max_width }}px;
+    }
+  }
+
+  @media (min-width: 720px) {
+    .clsection .desktop-custom-width .collection--item-image {
+      max-width: {{ block.settings.desktop_collection_max_width }}px;
+    }
+
+    .clsection .desktop-custom-width.text-align-left .dynamic-collection-list--item-info {
+      max-width: {{ block.settings.desktop_collection_max_width }}px;
+    }
+
+    .clsection .desktop-custom-width.text-align-right .dynamic-collection-list--item-info {
+      max-width: {{ block.settings.desktop_collection_max_width }}px;
+    }
+
+    .clsection .desktop-custom-width.dynamic-collection-list--inner {
+      max-width: {{ block.settings.layout_collection_max_width }}px;
+    }
+  }
+
+  .clsection .dynamic-collection-list--item-info {
+    text-align: {{ block.settings.text_alignment }};
+  }
+{% endstyle %}
+
+<section class="dynamic-collection-list--container clsection custompage-section" style="background-color: {{ block.settings.background_color }};">
+  {% if block.settings.title != blank or block.settings.subheading != blank %}
+    <div class="home-section--title-container" >
+    {% if block.settings.title != blank %}
+      <h2 class="home-section--title" style="color: {{ block.settings.heading_color }};">
+        {{ block.settings.title | escape }}
+      </h2>
+    {% endif %}
+    {% if block.settings.subheading != blank %}
+      <div class="home-section--subheading" style="color: {{ block.settings.subheading_color }};">
+        {{ block.settings.subheading }}
+      </div>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  {%- assign label_style = block.settings.label_style -%}
+  {%- assign text_alignment = block.settings.text_alignment-%}
+  {%- assign desktop_collections_per_row = block.settings.desktop_collections_per_row -%}
+  {%- assign desktop_rows = block.settings.display_desktop_collections -%}
+  {%- assign mobile_collections_per_row = block.settings.mobile_collections_per_row -%}
+  {%- assign mobile_rows = block.settings.display_mobile_collections -%}
+  {%- assign mobile_width = block.settings.mobile_collection_width -%}
+  {%- assign desktop_width = block.settings.desktop_collection_width -%}
+  {%- assign layout_width = block.settings.layout_collection_max_width -%}
+  {%- assign desktop_collection_number = desktop_collections_per_row | times: desktop_rows -%}
+  {%- assign mobile_collection_number = mobile_collections_per_row | times: mobile_rows -%}
+  {%- assign desktop_active_class = 'active' -%}
+  {%- assign mobile_active_class = 'active-mobile' -%}
+
+
+  <ul class="home-section--content dynamic-collection-list--inner {{ label_style }} desktop-collections-per-row-{{ desktop_collections_per_row }} mobile-collections-per-row-{{ mobile_collections_per_row }} text-align-{{ text_alignment }} {{ mobile_width }} {{ desktop_width }}">
+    <!--First collection starts here-->
+    {% if block.settings.c1_show %}
+      {% assign collection = collections[block.settings.c1_collection] %}
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% assign featured_image = false %}
+      {% assign featured_image_alt = '' %}
+
+      {% if block.settings.c1_image %}
+        {% assign featured_image = block.settings.c1_image %}
+        {% assign featured_image_alt = block.settings.c1_image.alt | escape %}
+      {% endif %}
+
+      {%- if blocksize > desktop_collection_number and desktop_collection_number != 0 -%}
+        {%- assign desktop_active_class = blank -%}
+      {%- endif -%}
+
+      {%- if blocksize > mobile_collection_number and mobile_collection_number != 0 -%}
+        {%- assign mobile_active_class = blank -%}
+      {%- endif -%}
+
+      <!--<li> settings-->
+
+      {% assign onboard = false %}
+      {% assign image = false %}
+      {% assign image_alt = false %}
+
+      {% if collection == blank or collection.empty? %}
+        {% assign onboard = true %}
+      {% endif %}
+
+      {%- if desktop_active_class -%}
+        {%- assign desktop_collection_active = desktop_active_class -%}
+      {%- endif -%}
+
+      {%- if mobile_active_class -%}
+        {%- assign mobile_collection_active = mobile_active_class -%}
+      {%- endif -%}
+
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% if onboard %}
+        {% assign collection_title = 'onboarding.collection.title' | t  %}
+        {% assign collection_url = '#' %}
+        {% assign mobile_collection_title = 'onboarding.collection.title' | t  %}
+      {% endif %}
+
+      {% if block.settings.c1_collection_label != '' %}
+        {% assign collection_title = block.settings.c1_collection_label %}
+      {% endif %}
+
+      {% if block.settings.c1_mobile_collection_label != '' %}
+        {% assign mobile_collection_title = block.settings.c1_mobile_collection_label %}
+      {% else %}
+        {% assign mobile_collection_title = collection_title %}
+      {% endif %}
+
+      {% if collection_image and collection_image_alt %}
+        {% assign image = collection_image %}
+        {% assign image_alt = collection_image_alt %}
+      {% elsif collection.image %}
+        {% assign image = collection.image %}
+        {% assign image_alt = collection.image.alt | escape %}
+      {% else %}
+        {% assign image = collection.products.first.featured_media.preview_image %}
+        {% assign image_alt = collection_title | escape %}
+      {% endif %}
+
+      <li class="dynamic-collection-list--item {{ desktop_collection_active }} {{ mobile_collection_active }} clitem1" {% if block %} {{ block.shopify_attributes }} {% endif %}>
+        <figure class="collection--item-image">
+          <a href="{{ collection_url }}">
+            {% if image and image_alt %}
+              {% include 'rimg', img: image, alt: image_alt, size: '1350x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% else %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% endif %}
+          </a>
+        </figure>
+        <div class="dynamic-collection-list--item-info">
+          <a class="dynamic-collection-list--item-link" href="{{ collection_url }}">
+            <span class="dynamic-collection-list--item-title">
+                {{ collection_title }}
+            </span>
+            <span class="dynamic-collection-list--item-title-mobile">
+                {{ mobile_collection_title }}
+            </span>
+          </a>
+        </div>
+      </li>
+    {% endif %}
+    <!--First collection ends here-->
+
+    <!--Second collection starts here-->
+    {% if block.settings.c2_show %}
+      {% assign collection = collections[block.settings.c2_collection] %}
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% assign featured_image = false %}
+      {% assign featured_image_alt = '' %}
+
+      {% if block.settings.c2_image %}
+        {% assign featured_image = block.settings.c2_image %}
+        {% assign featured_image_alt = block.settings.c2_image.alt | escape %}
+      {% endif %}
+
+      {%- if blocksize > desktop_collection_number and desktop_collection_number != 0 -%}
+        {%- assign desktop_active_class = blank -%}
+      {%- endif -%}
+
+      {%- if blocksize > mobile_collection_number and mobile_collection_number != 0 -%}
+        {%- assign mobile_active_class = blank -%}
+      {%- endif -%}
+
+      <!--<li> settings-->
+
+      {% assign onboard = false %}
+      {% assign image = false %}
+      {% assign image_alt = false %}
+
+      {% if collection == blank or collection.empty? %}
+        {% assign onboard = true %}
+      {% endif %}
+
+      {%- if desktop_active_class -%}
+        {%- assign desktop_collection_active = desktop_active_class -%}
+      {%- endif -%}
+
+      {%- if mobile_active_class -%}
+        {%- assign mobile_collection_active = mobile_active_class -%}
+      {%- endif -%}
+
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% if onboard %}
+        {% assign collection_title = 'onboarding.collection.title' | t  %}
+        {% assign collection_url = '#' %}
+        {% assign mobile_collection_title = 'onboarding.collection.title' | t  %}
+      {% endif %}
+
+      {% if block.settings.c2_collection_label != '' %}
+        {% assign collection_title = block.settings.c2_collection_label %}
+      {% endif %}
+
+      {% if block.settings.c2_mobile_collection_label != '' %}
+        {% assign mobile_collection_title = block.settings.c2_mobile_collection_label %}
+      {% else %}
+        {% assign mobile_collection_title = collection_title %}
+      {% endif %}
+
+      {% if collection_image and collection_image_alt %}
+        {% assign image = collection_image %}
+        {% assign image_alt = collection_image_alt %}
+      {% elsif collection.image %}
+        {% assign image = collection.image %}
+        {% assign image_alt = collection.image.alt | escape %}
+      {% else %}
+        {% assign image = collection.products.first.featured_media.preview_image %}
+        {% assign image_alt = collection_title | escape %}
+      {% endif %}
+
+      <li class="dynamic-collection-list--item {{ desktop_collection_active }} {{ mobile_collection_active }} clitem2" {% if block %} {{ block.shopify_attributes }} {% endif %}>
+        <figure class="collection--item-image">
+          <a href="{{ collection_url }}">
+            {% if image and image_alt %}
+              {% include 'rimg', img: image, alt: image_alt, size: '1350x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% else %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% endif %}
+          </a>
+        </figure>
+        <div class="dynamic-collection-list--item-info">
+          <a class="dynamic-collection-list--item-link" href="{{ collection_url }}">
+            <span class="dynamic-collection-list--item-title">
+                {{ collection_title }}
+            </span>
+            <span class="dynamic-collection-list--item-title-mobile">
+                {{ mobile_collection_title }}
+            </span>
+          </a>
+        </div>
+      </li>
+    {% endif %}
+    <!--Second collection ends here-->
+
+    <!--Third collection starts here-->
+    {% if block.settings.c3_show %}
+      {% assign collection = collections[block.settings.c3_collection] %}
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% assign featured_image = false %}
+      {% assign featured_image_alt = '' %}
+
+      {% if block.settings.c3_image %}
+        {% assign featured_image = block.settings.c3_image %}
+        {% assign featured_image_alt = block.settings.c3_image.alt | escape %}
+      {% endif %}
+
+      {%- if blocksize > desktop_collection_number and desktop_collection_number != 0 -%}
+        {%- assign desktop_active_class = blank -%}
+      {%- endif -%}
+
+      {%- if blocksize > mobile_collection_number and mobile_collection_number != 0 -%}
+        {%- assign mobile_active_class = blank -%}
+      {%- endif -%}
+
+      <!--<li> settings-->
+
+      {% assign onboard = false %}
+      {% assign image = false %}
+      {% assign image_alt = false %}
+
+      {% if collection == blank or collection.empty? %}
+        {% assign onboard = true %}
+      {% endif %}
+
+      {%- if desktop_active_class -%}
+        {%- assign desktop_collection_active = desktop_active_class -%}
+      {%- endif -%}
+
+      {%- if mobile_active_class -%}
+        {%- assign mobile_collection_active = mobile_active_class -%}
+      {%- endif -%}
+
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% if onboard %}
+        {% assign collection_title = 'onboarding.collection.title' | t  %}
+        {% assign collection_url = '#' %}
+        {% assign mobile_collection_title = 'onboarding.collection.title' | t  %}
+      {% endif %}
+
+      {% if block.settings.c3_collection_label != '' %}
+        {% assign collection_title = block.settings.c3_collection_label %}
+      {% endif %}
+
+      {% if block.settings.c3_mobile_collection_label != '' %}
+        {% assign mobile_collection_title = block.settings.c3_mobile_collection_label %}
+      {% else %}
+        {% assign mobile_collection_title = collection_title %}
+      {% endif %}
+
+      {% if collection_image and collection_image_alt %}
+        {% assign image = collection_image %}
+        {% assign image_alt = collection_image_alt %}
+      {% elsif collection.image %}
+        {% assign image = collection.image %}
+        {% assign image_alt = collection.image.alt | escape %}
+      {% else %}
+        {% assign image = collection.products.first.featured_media.preview_image %}
+        {% assign image_alt = collection_title | escape %}
+      {% endif %}
+
+      <li class="dynamic-collection-list--item {{ desktop_collection_active }} {{ mobile_collection_active }} clitem3" {% if block %} {{ block.shopify_attributes }} {% endif %}>
+        <figure class="collection--item-image">
+          <a href="{{ collection_url }}">
+            {% if image and image_alt %}
+              {% include 'rimg', img: image, alt: image_alt, size: '1350x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% else %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% endif %}
+          </a>
+        </figure>
+        <div class="dynamic-collection-list--item-info">
+          <a class="dynamic-collection-list--item-link" href="{{ collection_url }}">
+            <span class="dynamic-collection-list--item-title">
+                {{ collection_title }}
+            </span>
+            <span class="dynamic-collection-list--item-title-mobile">
+                {{ mobile_collection_title }}
+            </span>
+          </a>
+        </div>
+      </li>
+    {% endif %}
+    <!--Third collection ends here-->
+
+    <!--Fourth collection starts here-->
+    {% if block.settings.c4_show %}
+      {% assign collection = collections[block.settings.c4_collection] %}
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% assign featured_image = false %}
+      {% assign featured_image_alt = '' %}
+
+      {% if block.settings.c4_image %}
+        {% assign featured_image = block.settings.c4_image %}
+        {% assign featured_image_alt = block.settings.c4_image.alt | escape %}
+      {% endif %}
+
+      {%- if blocksize > desktop_collection_number and desktop_collection_number != 0 -%}
+        {%- assign desktop_active_class = blank -%}
+      {%- endif -%}
+
+      {%- if blocksize > mobile_collection_number and mobile_collection_number != 0 -%}
+        {%- assign mobile_active_class = blank -%}
+      {%- endif -%}
+
+      <!--<li> settings-->
+
+      {% assign onboard = false %}
+      {% assign image = false %}
+      {% assign image_alt = false %}
+
+      {% if collection == blank or collection.empty? %}
+        {% assign onboard = true %}
+      {% endif %}
+
+      {%- if desktop_active_class -%}
+        {%- assign desktop_collection_active = desktop_active_class -%}
+      {%- endif -%}
+
+      {%- if mobile_active_class -%}
+        {%- assign mobile_collection_active = mobile_active_class -%}
+      {%- endif -%}
+
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% if onboard %}
+        {% assign collection_title = 'onboarding.collection.title' | t  %}
+        {% assign collection_url = '#' %}
+        {% assign mobile_collection_title = 'onboarding.collection.title' | t  %}
+      {% endif %}
+
+      {% if block.settings.c4_collection_label != '' %}
+        {% assign collection_title = block.settings.c4_collection_label %}
+      {% endif %}
+
+      {% if block.settings.c4_mobile_collection_label != '' %}
+        {% assign mobile_collection_title = block.settings.c4_mobile_collection_label %}
+      {% else %}
+        {% assign mobile_collection_title = collection_title %}
+      {% endif %}
+
+      {% if collection_image and collection_image_alt %}
+        {% assign image = collection_image %}
+        {% assign image_alt = collection_image_alt %}
+      {% elsif collection.image %}
+        {% assign image = collection.image %}
+        {% assign image_alt = collection.image.alt | escape %}
+      {% else %}
+        {% assign image = collection.products.first.featured_media.preview_image %}
+        {% assign image_alt = collection_title | escape %}
+      {% endif %}
+
+      <li class="dynamic-collection-list--item {{ desktop_collection_active }} {{ mobile_collection_active }} clitem4" {% if block %} {{ block.shopify_attributes }} {% endif %}>
+        <figure class="collection--item-image">
+          <a href="{{ collection_url }}">
+            {% if image and image_alt %}
+              {% include 'rimg', img: image, alt: image_alt, size: '1350x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% else %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% endif %}
+          </a>
+        </figure>
+        <div class="dynamic-collection-list--item-info">
+          <a class="dynamic-collection-list--item-link" href="{{ collection_url }}">
+            <span class="dynamic-collection-list--item-title">
+                {{ collection_title }}
+            </span>
+            <span class="dynamic-collection-list--item-title-mobile">
+                {{ mobile_collection_title }}
+            </span>
+          </a>
+        </div>
+      </li>
+    {% endif %}
+    <!--Fourth collection ends here-->
+
+    <!--Fifth collection starts here-->
+    {% if block.settings.c5_show %}
+      {% assign collection = collections[block.settings.c5_collection] %}
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% assign featured_image = false %}
+      {% assign featured_image_alt = '' %}
+
+      {% if block.settings.c5_image %}
+        {% assign featured_image = block.settings.c5_image %}
+        {% assign featured_image_alt = block.settings.c5_image.alt | escape %}
+      {% endif %}
+
+      {%- if blocksize > desktop_collection_number and desktop_collection_number != 0 -%}
+        {%- assign desktop_active_class = blank -%}
+      {%- endif -%}
+
+      {%- if blocksize > mobile_collection_number and mobile_collection_number != 0 -%}
+        {%- assign mobile_active_class = blank -%}
+      {%- endif -%}
+
+      <!--<li> settings-->
+
+      {% assign onboard = false %}
+      {% assign image = false %}
+      {% assign image_alt = false %}
+
+      {% if collection == blank or collection.empty? %}
+        {% assign onboard = true %}
+      {% endif %}
+
+      {%- if desktop_active_class -%}
+        {%- assign desktop_collection_active = desktop_active_class -%}
+      {%- endif -%}
+
+      {%- if mobile_active_class -%}
+        {%- assign mobile_collection_active = mobile_active_class -%}
+      {%- endif -%}
+
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% if onboard %}
+        {% assign collection_title = 'onboarding.collection.title' | t  %}
+        {% assign collection_url = '#' %}
+        {% assign mobile_collection_title = 'onboarding.collection.title' | t  %}
+      {% endif %}
+
+      {% if block.settings.c5_collection_label != '' %}
+        {% assign collection_title = block.settings.c5_collection_label %}
+      {% endif %}
+
+      {% if block.settings.c5_mobile_collection_label != '' %}
+        {% assign mobile_collection_title = block.settings.c5_mobile_collection_label %}
+      {% else %}
+        {% assign mobile_collection_title = collection_title %}
+      {% endif %}
+
+      {% if collection_image and collection_image_alt %}
+        {% assign image = collection_image %}
+        {% assign image_alt = collection_image_alt %}
+      {% elsif collection.image %}
+        {% assign image = collection.image %}
+        {% assign image_alt = collection.image.alt | escape %}
+      {% else %}
+        {% assign image = collection.products.first.featured_media.preview_image %}
+        {% assign image_alt = collection_title | escape %}
+      {% endif %}
+
+      <li class="dynamic-collection-list--item {{ desktop_collection_active }} {{ mobile_collection_active }} clitem5" {% if block %} {{ block.shopify_attributes }} {% endif %}>
+        <figure class="collection--item-image">
+          <a href="{{ collection_url }}">
+            {% if image and image_alt %}
+              {% include 'rimg', img: image, alt: image_alt, size: '1350x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% else %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% endif %}
+          </a>
+        </figure>
+        <div class="dynamic-collection-list--item-info">
+          <a class="dynamic-collection-list--item-link" href="{{ collection_url }}">
+            <span class="dynamic-collection-list--item-title">
+                {{ collection_title }}
+            </span>
+            <span class="dynamic-collection-list--item-title-mobile">
+                {{ mobile_collection_title }}
+            </span>
+          </a>
+        </div>
+      </li>
+    {% endif %}
+    <!--Fifth collection ends here-->
+
+    <!--Sixth collection starts here-->
+    {% if block.settings.c6_show %}
+      {% assign collection = collections[block.settings.c6_collection] %}
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% assign featured_image = false %}
+      {% assign featured_image_alt = '' %}
+
+      {% if block.settings.c6_image %}
+        {% assign featured_image = block.settings.c6_image %}
+        {% assign featured_image_alt = block.settings.c6_image.alt | escape %}
+      {% endif %}
+
+      {%- if blocksize > desktop_collection_number and desktop_collection_number != 0 -%}
+        {%- assign desktop_active_class = blank -%}
+      {%- endif -%}
+
+      {%- if blocksize > mobile_collection_number and mobile_collection_number != 0 -%}
+        {%- assign mobile_active_class = blank -%}
+      {%- endif -%}
+
+      <!--<li> settings-->
+
+      {% assign onboard = false %}
+      {% assign image = false %}
+      {% assign image_alt = false %}
+
+      {% if collection == blank or collection.empty? %}
+        {% assign onboard = true %}
+      {% endif %}
+
+      {%- if desktop_active_class -%}
+        {%- assign desktop_collection_active = desktop_active_class -%}
+      {%- endif -%}
+
+      {%- if mobile_active_class -%}
+        {%- assign mobile_collection_active = mobile_active_class -%}
+      {%- endif -%}
+
+      {% assign collection_title = collection.title %}
+      {% assign collection_url = collection.url %}
+
+      {% if onboard %}
+        {% assign collection_title = 'onboarding.collection.title' | t  %}
+        {% assign collection_url = '#' %}
+        {% assign mobile_collection_title = 'onboarding.collection.title' | t  %}
+      {% endif %}
+
+      {% if block.settings.c6_collection_label != '' %}
+        {% assign collection_title = block.settings.c6_collection_label %}
+      {% endif %}
+
+      {% if block.settings.c6_mobile_collection_label != '' %}
+        {% assign mobile_collection_title = block.settings.c6_mobile_collection_label %}
+      {% else %}
+        {% assign mobile_collection_title = collection_title %}
+      {% endif %}
+
+      {% if collection_image and collection_image_alt %}
+        {% assign image = collection_image %}
+        {% assign image_alt = collection_image_alt %}
+      {% elsif collection.image %}
+        {% assign image = collection.image %}
+        {% assign image_alt = collection.image.alt | escape %}
+      {% else %}
+        {% assign image = collection.products.first.featured_media.preview_image %}
+        {% assign image_alt = collection_title | escape %}
+      {% endif %}
+
+      <li class="dynamic-collection-list--item {{ desktop_collection_active }} {{ mobile_collection_active }} clitem6" {% if block %} {{ block.shopify_attributes }} {% endif %}>
+        <figure class="collection--item-image">
+          <a href="{{ collection_url }}">
+            {% if image and image_alt %}
+              {% include 'rimg', img: image, alt: image_alt, size: '1350x', lazy: settings.lazy_load, canvas: settings.lazy_load, %}
+            {% else %}
+              {%- capture index -%}
+                {%- cycle '1', '2', '3', '4', '5', '6' -%}
+              {%- endcapture -%}
+              {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+            {% endif %}
+          </a>
+        </figure>
+        <div class="dynamic-collection-list--item-info">
+          <a class="dynamic-collection-list--item-link" href="{{ collection_url }}">
+            <span class="dynamic-collection-list--item-title">
+                {{ collection_title }}
+            </span>
+            <span class="dynamic-collection-list--item-title-mobile">
+                {{ mobile_collection_title }}
+            </span>
+          </a>
+        </div>
+      </li>
+    {% endif %}
+    <!--Sixth collection ends here-->
+  </ul>
+
+  {%- if desktop_collection_number > 0 and block.blocks.size > desktop_collection_number -%}
+    {%- assign desktop_button_active = 'active' -%}
+  {%- endif -%}
+
+  {%- if mobile_collection_number > 0 and block.blocks.size > mobile_collection_number -%}
+    {%- assign mobile_button_active = 'active-mobile' -%}
+  {%- endif -%}
+
+  <button class="button-secondary dynamic-collection-list--show-more-button {{ desktop_button_active }} {{ mobile_button_active }}">Show more</button>
+</section>

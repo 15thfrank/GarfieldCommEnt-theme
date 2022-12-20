@@ -1,0 +1,109 @@
+{% assign blocksize = 0 %}
+{% if block.settings.t1_show and block.settings.t2_show and block.settings.t3_show %}
+  {% assign blocksize = 3 %}
+{% elsif block.settings.t1_show and block.settings.t2_show %}
+  {% assign blocksize = 2 %}
+{% elsif block.settings.t2_show and block.settings.t3_show%}
+  {% assign blocksize = 2 %}
+{% elsif block.settings.t1_show and block.settings.t3_show %}
+  {% assign blocksize = 2 %}
+{% elsif block.settings.t1_show or block.settings.t2_show or block.settings.t3_show %}
+  {% assign blocksize = 1 %}
+{% endif %}
+
+<section class="testimonials-section custompage-sectionpad" style="{% if section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}">
+  {% if section.settings.title != blank or section.settings.subtitle != blank %}
+    <header class="testimonials-header">
+      {% if section.settings.title != blank %}<h2 class="home-section--title testimonials-heading" style="{% if section.settings.title_color != blank %}color: {{ section.settings.title_color }};{% endif %}">{{ section.settings.title }}</h2>{% endif %}
+      {% if section.settings.subtitle != blank %}<div class="home-section--subheading testimonials-subheading" style="{% if section.settings.subtitle_color != blank %}color: {{ section.settings.subtitle_color }};{% endif %}">{{ section.settings.subtitle }}</div>{% endif %}
+    </header>
+  {% endif %}
+
+  
+    <div class="testimonials testimonials-{{blocksize}}" data-testimonials="{{blocksize}}">
+        <!--Testimonial one starts here-->
+        {% if block.settings.t1_show %}
+        <div class="testimonial {% if block.settings.t1_show_quotations %}testimonial-show-quotations{% endif %}">
+          <div class="testimonial-inner">
+            {% if block.settings.t1_image %}
+              <figure class="testimonial-figure">
+                {% include 'rimg', img: block.settings.t1_image, class: 'testimonial-image', size: '60x', lazy: settings.lazy_load %}
+              </figure>
+            {% endif %}
+
+            <blockquote class="testimonial-blockquote">
+              {% if block.settings.t1_quote %}
+                <div class="testimonial-blockquote-quote">
+                  {{ block.settings.t1_quote }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.t1_citation %}
+                <footer class="testimonial-blockquote-footer">
+                  <cite class="testimonial-blockquote-citation">{{ block.settings.t1_citation }}</cite>
+                </footer>
+              {% endif %}
+            </blockquote>
+          </div>
+        </div>
+        {% endif %}
+        <!--Testimonial one ends here-->
+
+        <!--Testimonial two starts here-->
+        {% if block.settings.t2_show %}
+        <div class="testimonial {% if block.settings.t2_show_quotations %}testimonial-show-quotations{% endif %}">
+          <div class="testimonial-inner">
+            {% if block.settings.t2_image %}
+              <figure class="testimonial-figure">
+                {% include 'rimg', img: block.settings.t2_image, class: 'testimonial-image', size: '60x', lazy: settings.lazy_load %}
+              </figure>
+            {% endif %}
+
+            <blockquote class="testimonial-blockquote">
+              {% if block.settings.t2_quote %}
+                <div class="testimonial-blockquote-quote">
+                  {{ block.settings.t2_quote }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.t2_citation %}
+                <footer class="testimonial-blockquote-footer">
+                  <cite class="testimonial-blockquote-citation">{{ block.settings.t2_citation }}</cite>
+                </footer>
+              {% endif %}
+            </blockquote>
+          </div>
+        </div>
+        {% endif %}
+        <!--Testimonial two ends here-->
+
+        <!--Testimonial three starts here-->
+        {% if block.settings.t3_show %}
+        <div class="testimonial {% if block.settings.t3_show_quotations %}testimonial-show-quotations{% endif %}">
+          <div class="testimonial-inner">
+            {% if block.settings.t3_image %}
+              <figure class="testimonial-figure">
+                {% include 'rimg', img: block.settings.t3_image, class: 'testimonial-image', size: '60x', lazy: settings.lazy_load %}
+              </figure>
+            {% endif %}
+
+            <blockquote class="testimonial-blockquote">
+              {% if block.settings.t3_quote %}
+                <div class="testimonial-blockquote-quote">
+                  {{ block.settings.t3_quote }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.t3_citation %}
+                <footer class="testimonial-blockquote-footer">
+                  <cite class="testimonial-blockquote-citation">{{ block.settings.t3_citation }}</cite>
+                </footer>
+              {% endif %}
+            </blockquote>
+          </div>
+        </div>
+        {% endif %}
+        <!--Testimonial three ends here-->
+    </div>
+
+</section>

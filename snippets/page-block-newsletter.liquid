@@ -1,0 +1,27 @@
+<script type="application/json" data-section-type="dynamic-newsletter" data-section-id="{{ block.id }}"></script>
+
+<section class="custompage-section dynamic-newsletter" style="background-color: {{ block.settings.background_color }}">
+  {% if block.settings.image %}
+    <figure class="dynamic-newsletter-figure" {% include 'rimg', img: block.settings.image, size: '500x', background: true, lazy: settings.lazy_load %}>
+      {% include 'rimg', img: block.settings.image, class: 'dynamic-newsletter-image', size: '500x', canvas: settings.lazy_load, lazy: settings.lazy_load %}
+    </figure>
+  {% endif %}
+
+  <div class="dynamic-newsletter-content">
+    <div class="home-section--title-container">
+        {% if block.settings.title != blank %}
+          <h2 class="home-section--title" style="color: {{ block.settings.heading_color }}">
+            {{ block.settings.title | escape }}
+          </h2>
+        {% endif %}
+
+        {% if block.settings.subheading != blank %}
+          <div class="dynamic-newsletter-text home-section--subheading" style="color: {{ block.settings.subheading_color }}">
+            {{ block.settings.subheading }}
+          </div>
+        {% endif %}
+    </div>
+
+    {% include 'newsletter' %}
+  </div>
+</section>

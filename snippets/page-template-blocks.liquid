@@ -1,0 +1,89 @@
+{% comment %}
+  This file handles each block available on product.sections or page.sections templates.
+  Each block is a near identical duplicate of a section also available on the home page.
+  Exception is sections that had blocks become hard coded options.
+{% endcomment %}
+
+<div>
+	{% for block in section.blocks %}
+		<div {{block.shopify_attributes}}>
+			{% case block.type %}
+				{% when 'blog-posts' %}
+					{% include 'page-block-blog-posts' %}
+				{% else %}
+
+				{% when 'collection-list' %}
+					{% include 'page-block-collection-list' %}
+				{% else %}
+
+				{% when 'featured-collection' %}
+					{% include 'page-block-featured-coll' %}
+				{% else %}
+
+				{% when 'featured-collections' %}
+					{% include 'page-block-featured-colls' %}
+				{% else %}
+
+				{% when 'grid' %}
+					{% include 'page-block-grid' %}
+				{% else %}
+
+				{% when 'image-w-text' %}
+					{% include 'page-block-img-w-text' %}
+				{% else %}
+
+				{% when 'image-w-text-overlay' %}
+					{% include 'page-block-img-txt-ov' %}
+				{% else %}
+
+				{% when 'logo-list' %}
+					{% include 'page-block-logo-list' %}
+				{% else %}
+
+				{% when 'mosaic' %}
+					{% include 'page-block-mosaic' %}
+				{% else %}
+
+				{% when 'featured-product' %}
+					{% include 'page-block-featured-product' %}
+				{% else %}
+
+				{% when 'newsletter' %}
+					{% include 'page-block-newsletter' %}
+				{% else %}
+
+				{% when 'twitter-feed' %}
+					{% include 'page-block-twitter-feed' %}
+				{% else %}
+
+				{% when 'highlights-banner' %}
+					{% include 'page-block-highlights-banner' %}
+				{% else %}
+
+				{% when 'map' %}
+					{% include 'page-block-map' %}
+				{% else %}
+
+				{% when 'search' %}
+					{% include 'page-block-search' %}
+				{% else %}
+
+				{% when 'testimonials' %}
+					{% include 'page-block-testimonials' %}
+				{% else %}
+
+				{% when 'menu-list' %}
+					{% include 'page-block-menu-list' %}
+				{% else %}
+
+				{% when 'rich-text' %}
+					{% include 'page-block-rich-text' %}
+				{% else %}
+
+				{% when 'video' %}
+					{% include 'page-block-video' %}
+				{% else %}
+		{% endcase %}
+		</div>    
+	{% endfor %}
+</div>

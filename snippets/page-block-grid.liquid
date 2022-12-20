@@ -1,0 +1,493 @@
+<style>
+  /* Grid one styles */
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 {
+      {% if block.settings.gridone_color != blank %}
+        color: {{ block.settings.gridone_color }};
+      {% endif %}
+
+      {% unless block.settings.gridone_image %}
+        {%- capture bg_image -%}
+          {%- include 'placeholder_svg_uri' placeholder: 'image' -%}
+        {%- endcapture -%}
+        background-image: url('{{ bg_image | strip_newlines }}');
+      {% endunless %}
+    }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1.desktop-block .promo-block-grid--content {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1.mobile-block .promo-block-grid--content.promo-block-grid--expanded {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+
+    {% if block.settings.gridone_overlay_style != 'none' and block.settings.gridone_background != blank and block.settings.gridone_background != 'rgba(0,0,0,0)' %}
+      {% assign opacity = block.settings.gridone_opacity | times: 0.01 %}
+      {% if block.settings.gridone_text_alignment contains 'top' %}
+        {% assign text_position = 'top' %}
+      {% elsif block.settings.gridone_text_alignment contains 'bottom' %}
+        {% assign text_position = 'bottom' %}
+      {% else %}
+        {% assign text_position = block.settings.gridone_text_alignment | remove: 'center-' %}
+      {% endif %}
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 .promo-block-grid--content {
+        {% if block.settings.gridone_overlay_style == 'solid' %}
+          background-color: {{ block.settings.gridone_background | color_modify: 'alpha', opacity }};
+        {% else %}
+          background: {% include 'gradient', color: block.settings.gridone_background, opacity: opacity, text_position: text_position, %};
+        {% endif %}
+      }
+    {% endif %}
+
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 .button-signpost {color: {{- block.settings.gridone_signpost_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 .promo-block-grid--preheading {color: {{- block.settings.gridone_preheading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 .promo-block-grid--header {color: {{- block.settings.gridone_heading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 .promo-block-grid--text {color: {{- block.settings.gridone_text_color -}};}
+    {% if block.settings.gridone_image %}
+      .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-1 {background-image: url("{{block.settings.gridone_image | img_url: 'master'}}");}
+    {% endif %}
+  
+  /*Grid two styles */
+  .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 {
+      {% if block.settings.gridtwo_color != blank %}
+        color: {{ block.settings.gridtwo_color }};
+      {% endif %}
+
+      {% unless block.settings.gridtwo_image %}
+        {%- capture bg_image -%}
+          {%- include 'placeholder_svg_uri' placeholder: 'image' -%}
+        {%- endcapture -%}
+        background-image: url('{{ bg_image | strip_newlines }}');
+      {% endunless %}
+    }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2.desktop-block .promo-block-grid--content {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2.mobile-block .promo-block-grid--content.promo-block-grid--expanded {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+
+    {% if block.settings.gridtwo_overlay_style != 'none' and block.settings.gridtwo_background != blank and block.settings.gridtwo_background != 'rgba(0,0,0,0)' %}
+      {% assign opacity = block.settings.gridtwo_opacity | times: 0.01 %}
+      {% if block.settings.gridtwo_text_alignment contains 'top' %}
+        {% assign text_position = 'top' %}
+      {% elsif block.settings.gridtwo_text_alignment contains 'bottom' %}
+        {% assign text_position = 'bottom' %}
+      {% else %}
+        {% assign text_position = block.settings.gridtwo_text_alignment | remove: 'center-' %}
+      {% endif %}
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 .promo-block-grid--content {
+        {% if block.settings.gridtwo_overlay_style == 'solid' %}
+          background-color: {{ block.settings.gridtwo_background | color_modify: 'alpha', opacity }};
+        {% else %}
+          background: {% include 'gradient', color: block.settings.gridtwo_background, opacity: opacity, text_position: text_position, %};
+        {% endif %}
+      }
+    {% endif %}
+
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 .button-signpost {color: {{- block.settings.gridtwo_signpost_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 .promo-block-grid--preheading {color: {{- block.settings.gridtwo_preheading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 .promo-block-grid--header {color: {{- block.settings.gridtwo_heading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 .promo-block-grid--text {color: {{- block.settings.gridtwo_text_color -}};}
+    {% if block.settings.gridtwo_image %}
+      .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-2 {background-image: url("{{block.settings.gridtwo_image | img_url: 'master'}}");}
+    {% endif %}
+
+    /* Grid three styles */
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 {
+      {% if block.settings.gridthree_color != blank %}
+        color: {{ block.settings.gridthree_color }};
+      {% endif %}
+
+      {% unless block.settings.gridthree_image %}
+        {%- capture bg_image -%}
+          {%- include 'placeholder_svg_uri' placeholder: 'image' -%}
+        {%- endcapture -%}
+        background-image: url('{{ bg_image | strip_newlines }}');
+      {% endunless %}
+    }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3.desktop-block .promo-block-grid--content {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3.mobile-block .promo-block-grid--content.promo-block-grid--expanded {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+
+    {% if block.settings.gridthree_overlay_style != 'none' and block.settings.gridthree_background != blank and block.settings.gridthree_background != 'rgba(0,0,0,0)' %}
+      {% assign opacity = block.settings.gridthree_opacity | times: 0.01 %}
+      {% if block.settings.gridthree_text_alignment contains 'top' %}
+        {% assign text_position = 'top' %}
+      {% elsif block.settings.gridthree_text_alignment contains 'bottom' %}
+        {% assign text_position = 'bottom' %}
+      {% else %}
+        {% assign text_position = block.settings.gridthree_text_alignment | remove: 'center-' %}
+      {% endif %}
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 .promo-block-grid--content {
+        {% if block.settings.gridthree_overlay_style == 'solid' %}
+          background-color: {{ block.settings.gridthree_background | color_modify: 'alpha', opacity }};
+        {% else %}
+          background: {% include 'gradient', color: block.settings.gridthree_background, opacity: opacity, text_position: text_position, %};
+        {% endif %}
+      }
+    {% endif %}
+
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 .button-signpost {color: {{- block.settings.gridthree_signpost_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 .promo-block-grid--preheading {color: {{- block.settings.gridthree_preheading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 .promo-block-grid--header {color: {{- block.settings.gridthree_heading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 .promo-block-grid--text {color: {{- block.settings.gridthree_text_color -}};}
+    {% if block.settings.gridthree_image %}
+      .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-3 {background-image: url("{{block.settings.gridthree_image | img_url: 'master'}}");}
+    {% endif %}
+
+    /* Grid four styles */
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 {
+      {% if block.settings.gridfour_color != blank %}
+        color: {{ block.settings.gridfour_color }};
+      {% endif %}
+
+      {% unless block.settings.gridfour_image %}
+        {%- capture bg_image -%}
+          {%- include 'placeholder_svg_uri' placeholder: 'image' -%}
+        {%- endcapture -%}
+        background-image: url('{{ bg_image | strip_newlines }}');
+      {% endunless %}
+    }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4.desktop-block .promo-block-grid--content {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4.mobile-block .promo-block-grid--content.promo-block-grid--expanded {
+        padding-bottom: {{- 100 | divided_by: block.settings.image.aspect_ratio -}}%;
+      }
+
+    {% if block.settings.gridfour_overlay_style != 'none' and block.settings.gridfour_background != blank and block.settings.gridfour_background != 'rgba(0,0,0,0)' %}
+      {% assign opacity = block.settings.gridfour_opacity | times: 0.01 %}
+      {% if block.settings.gridfour_text_alignment contains 'top' %}
+        {% assign text_position = 'top' %}
+      {% elsif block.settings.gridfour_text_alignment contains 'bottom' %}
+        {% assign text_position = 'bottom' %}
+      {% else %}
+        {% assign text_position = block.settings.gridfour_text_alignment | remove: 'center-' %}
+      {% endif %}
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 .promo-block-grid--content {
+        {% if block.settings.gridfour_overlay_style == 'solid' %}
+          background-color: {{ block.settings.gridfour_background | color_modify: 'alpha', opacity }};
+        {% else %}
+          background: {% include 'gradient', color: block.settings.gridfour_background, opacity: opacity, text_position: text_position, %};
+        {% endif %}
+      }
+    {% endif %}
+
+
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 .button-signpost {color: {{- block.settings.gridfour_signpost_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 .promo-block-grid--preheading {color: {{- block.settings.gridfour_preheading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 .promo-block-grid--header {color: {{- block.settings.gridfour_heading_color -}};}
+    .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 .promo-block-grid--text {color: {{- block.settings.gridfour_text_color -}};}
+    {% if block.settings.gridfour_image %}
+      .sectionuse-{{block.settings.sectionuse}} .promo-block-grid--index-4 {background-image: url("{{block.settings.gridfour_image | img_url: 'master'}}");}
+    {% endif %}
+
+</style>
+
+<section class="sectionuse-{{block.settings.sectionuse}} promo-grid--container custompage-section" style="background-color: {{ block.settings.background_color }};" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank or block.settings.subheading != blank %}
+    <div class="home-section--title-container" >
+    {% if block.settings.title != blank %}
+      <h2 class="home-section--title" style="color: {{ block.settings.heading_color }};">
+        {{ block.settings.title | escape }}
+      </h2>
+    {% endif %}
+    {% if block.settings.subheading != blank %}
+      <div class="home-section--subheading" style="color: {{ block.settings.subheading_color }};">
+        {{ block.settings.subheading }}
+      </div>
+    {% endif %}
+    </div>
+  {% endif %}
+
+  {%- capture classes -%}
+    home-section--content
+  {%- endcapture -%}
+
+  <div class="{{ classes | strip_newlines }}">
+    <!--Desktop blocks begin here-->
+    <div class="promo-grid--inner">
+      <!--Grid one begins-->
+      {% if block.settings.gridone_show %}
+        <article class="promo-block-grid promo-block-grid--index-1 promo-grid--{{block.settings.gridone_promo_width}} desktop-block"{% if block.settings.gridone_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridone_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridone_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridone_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridone_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridone_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridone_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridone_text}}</p>
+                {% if block.settings.gridone_button_text.size>0 and block.settings.gridone_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridone_button_style == "primary" or block.settings.gridone_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridone_button_style == "secondary" or block.settings.gridone_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridone_button_style == "primary_icon" or block.settings.gridone_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridone_button_text}}</span>
+                    {% if block.settings.gridone_button_style == "primary_icon" or block.settings.gridone_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridone_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridone_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridone_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!--Grid one ends-->
+      <!--Grid two begins-->
+      {% if block.settings.gridtwo_show %}
+        <article class="promo-block-grid promo-block-grid--index-2 promo-grid--{{block.settings.gridtwo_promo_width}} promo-block--right desktop-block"{% if block.settings.gridtwo_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridtwo_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridtwo_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridtwo_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridtwo_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridtwo_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridtwo_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridtwo_text}}</p>
+                {% if block.settings.gridtwo_button_text.size>0 and block.settings.gridtwo_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridtwo_button_style == "primary" or block.settings.gridtwo_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridtwo_button_style == "secondary" or block.settings.gridtwo_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridtwo_button_style == "primary_icon" or block.settings.gridtwo_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridtwo_button_text}}</span>
+                    {% if block.settings.gridtwo_button_style == "primary_icon" or block.settings.gridtwo_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridtwo_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridtwo_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridtwo_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!-- Grid two ends-->
+      <!-- Grid three begins-->
+      {% if block.settings.gridthree_show %}
+        <article class="promo-block-grid promo-block-grid--index-3 promo-grid--{{block.settings.gridthree_promo_width}} desktop-block"{% if block.settings.gridthree_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridthree_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridthree_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridthree_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridthree_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridthree_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridthree_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridthree_text}}</p>
+                {% if block.settings.gridthree_button_text.size>0 and block.settings.gridthree_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridthree_button_style == "primary" or block.settings.gridthree_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridthree_button_style == "secondary" or block.settings.gridthree_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridthree_button_style == "primary_icon" or block.settings.gridthree_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridthree_button_text}}</span>
+                    {% if block.settings.gridthree_button_style == "primary_icon" or block.settings.gridthree_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridthree_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridthree_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridthree_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!-- Grid three ends-->
+
+      <!-- Grid four beings-->
+      {% if block.settings.gridfour_show %}
+        <article class="promo-block-grid promo-block-grid--index-4 promo-grid--{{block.settings.gridfour_promo_width}} promo-block--right desktop-block"{% if block.settings.gridfour_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridfour_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridfour_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridfour_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridfour_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridfour_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridfour_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridfour_text}}</p>
+                {% if block.settings.gridfour_button_text.size>0 and block.settings.gridfour_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridfour_button_style == "primary" or block.settings.gridfour_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridfour_button_style == "secondary" or block.settings.gridfour_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridfour_button_style == "primary_icon" or block.settings.gridfour_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridfour_button_text}}</span>
+                    {% if block.settings.gridfour_button_style == "primary_icon" or block.settings.gridfour_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridfour_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridfour_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridfour_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!-- Grid four ends-->
+      <!--Desktop blocks end here-->
+
+      <!--Mobile blocks begin here-->
+      <!--Grid one mobile begins-->
+      {% if block.settings.gridone_show %}
+        <article class="promo-block-grid promo-block-grid--index-1 promo-grid--{{block.settings.gridone_promo_width}} mobile-block"{% if block.settings.gridone_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridone_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridone_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridone_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridone_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridone_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridone_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridone_text}}</p>
+                {% if block.settings.gridone_button_text.size>0 and block.settings.gridone_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridone_button_style == "primary" or block.settings.gridone_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridone_button_style == "secondary" or block.settings.gridone_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridone_button_style == "primary_icon" or block.settings.gridone_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridone_button_text}}</span>
+                    {% if block.settings.gridone_button_style == "primary_icon" or block.settings.gridone_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridone_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridone_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridone_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!--Grid one mobile ends-->
+      <!--Grid two mobile begins-->
+      {% if block.settings.gridtwo_show %}
+        <article class="promo-block-grid promo-block-grid--index-2 promo-grid--{{block.settings.gridtwo_promo_width}} mobile-block"{% if block.settings.gridtwo_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridtwo_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridtwo_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridtwo_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridtwo_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridtwo_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridtwo_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridtwo_text}}</p>
+                {% if block.settings.gridtwo_button_text.size>0 and block.settings.gridtwo_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridtwo_button_style == "primary" or block.settings.gridtwo_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridtwo_button_style == "secondary" or block.settings.gridtwo_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridtwo_button_style == "primary_icon" or block.settings.gridtwo_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridtwo_button_text}}</span>
+                    {% if block.settings.gridtwo_button_style == "primary_icon" or block.settings.gridtwo_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridtwo_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridtwo_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridtwo_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!-- Grid two mobile ends-->
+      <!-- Grid three mobile begins-->
+      {% if block.settings.gridthree_show %}
+        <article class="promo-block-grid promo-block-grid--index-3 promo-grid--{{block.settings.gridthree_promo_width}} mobile-block"{% if block.settings.gridthree_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridthree_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridthree_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridthree_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridthree_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridthree_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridthree_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridthree_text}}</p>
+                {% if block.settings.gridthree_button_text.size>0 and block.settings.gridthree_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridthree_button_style == "primary" or block.settings.gridthree_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridthree_button_style == "secondary" or block.settings.gridthree_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridthree_button_style == "primary_icon" or block.settings.gridthree_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridthree_button_text}}</span>
+                    {% if block.settings.gridthree_button_style == "primary_icon" or block.settings.gridthree_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridthree_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridthree_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridthree_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!-- Grid three mobile ends-->
+
+      <!-- Grid four mobile begins-->
+      {% if block.settings.gridfour_show %}
+        <article class="promo-block-grid promo-block-grid--index-4 promo-grid--{{block.settings.gridfour_promo_width}} mobile-block"{% if block.settings.gridfour_image %}data-rimg="loaded" data-rimg-scale="1" data-rimg-max="4096x2731" data-rimg-crop=""{% endif %}>
+          {% if block.settings.gridfour_block_link %}<a class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridfour_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded    onboarding" href="{{block.settings.gridfour_block_link}}">{% endif %}
+            <div class="promo-block-grid--content  promo-block-grid--content-align-{{block.settings.gridfour_text_alignment}}  promo-grid--maintain-aspect-ratio  promo-block-grid--expanded  promo-block-grid--unlinked  onboarding">
+              <div class="promo-block-grid--content-wrapper">
+                <div class="promo-block-grid--preheading">{{ block.settings.gridfour_preheading }}</div>
+                <h2 class="promo-block-grid--header">{{block.settings.gridfour_title}}</h2>
+                <p class="promo-block-grid--text">{{block.settings.gridfour_text}}</p>
+                {% if block.settings.gridfour_button_text.size>0 and block.settings.gridfour_button_style != "signpost"%}
+                  <span class="{% if block.settings.gridfour_button_style == "primary" or block.settings.gridfour_button_style == "primary_icon" %}button-primary {%endif%} {% if block.settings.gridfour_button_style == "secondary" or block.settings.gridfour_button_style == "secondary_icon" %}button-secondary {%endif%} promo-block-grid--button {% if block.settings.gridfour_button_style == "primary_icon" or block.settings.gridfour_button_style == "secondary_icon" %}has-icon{%endif%}">
+                    <span class="button-text">{{block.settings.gridfour_button_text}}</span>
+                    {% if block.settings.gridfour_button_style == "primary_icon" or block.settings.gridfour_button_style == "secondary_icon" %}
+                      <span class="button-icon">
+                        <svg class="icon-chevron-signpost " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">          <title>Chevron down icon</title>        <path d="M4 5.75L7 8.75L10 5.75" stroke="currentColor" stroke-width="1.25"></path>      <circle cx="7" cy="7" r="6.375" stroke="currentColor" stroke-width="1.25"></circle>    </svg>
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+                {% if block.settings.gridfour_button_style == "signpost"%}
+                  <span class="button-signpost promo-block-grid--button">
+                    <span class="button-text">{{block.settings.gridfour_button_text}}</span>
+                    <span class="signpost-icon">
+                      <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>
+                    </span>
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          {% if block.settings.gridfour_block_link %}</a>{% endif %}
+        </article>
+      {% endif %}
+      <!-- Grid four mobile ends-->
+
+      <!--Mobile grid ends here-->
+              
+    </div>
+  </div>
+</section>
